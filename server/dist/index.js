@@ -5,10 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const bodyParser = require("body-parser");
+const cors = require("cors");
 require("dotenv").config({ path: "../.env" });
 const app = (0, express_1.default)();
 const port = process.env.PORT;
 const db = require("./db/index");
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true,
