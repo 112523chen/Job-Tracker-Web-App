@@ -21,14 +21,14 @@ A full-stack web application created with PERN (Postgres, Express, React, Node) 
 ```sql
 CREATE DATABASE jobapp;
 CREATE TABLE applications (
-    id SERIAL primary key ,
+    id SERIAL primary key,
     title varchar,
     company varchar,
-    description varchar,
-    created timestampz,
-    modified timestampz,
+    created timestamptz,
+    modified timestamptz,
     status varchar,
-    url varchar
+    url varchar,
+    description varchar
 );
 ```
 
