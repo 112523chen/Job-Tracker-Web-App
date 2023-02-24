@@ -6,17 +6,33 @@ import { application } from "../model";
 
 interface Props {
   applicationData: application[];
+  setIsInAddView: React.Dispatch<React.SetStateAction<boolean>>;
+  isInAddView: boolean;
+  setIsInAppView: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const MainViewBase = styled.div`
+interface State {
+  isInAddView: boolean;
+}
+
+const MainViewBase = styled.div<State>`
   display: flex;
+  ${(props) => (props.isInAddView === false ? null : "")}
 `;
 
-const MainView: React.FC<Props> = ({ applicationData }) => {
+const MainView: React.FC<Props> = ({
+  applicationData,
+  setIsInAddView,
+  isInAddView,
+  setIsInAppView,
+}) => {
   return (
-    <MainViewBase>
-      <Sidebar />
-      <MainSection applicationData={applicationData} />
+    <MainViewBase isInAddView={isInAddView}>
+      <Sidebar setIsInAddView={setIsInAddView} isInAddView={isInAddView} />
+      <MainSection
+        applicationData={applicationData}
+        setIsInAppView={setIsInAppView}
+      />
     </MainViewBase>
   );
 };

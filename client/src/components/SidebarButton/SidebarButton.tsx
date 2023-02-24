@@ -1,10 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 interface Props {
   icon: React.ReactNode;
   text: string;
+  path: string;
 }
+
+const StyledLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+`;
 
 const SidebarButtonBase = styled.div`
   display: flex;
@@ -39,14 +46,22 @@ const SidebarButtonText = styled.div`
   width: 5.625rem;
   font-size: 1.25rem;
   font-weight: 700;
+
+  p {
+    color: black;
+  }
 `;
 
-const SidebarButton: React.FC<Props> = ({ icon, text }) => {
+const SidebarButton: React.FC<Props> = ({ icon, text, path }) => {
   return (
-    <SidebarButtonBase>
-      <SidebarButtonIcon>{icon}</SidebarButtonIcon>
-      <SidebarButtonText>{text}</SidebarButtonText>
-    </SidebarButtonBase>
+    <StyledLink to={path}>
+      <SidebarButtonBase>
+        <SidebarButtonIcon>{icon}</SidebarButtonIcon>
+        <SidebarButtonText>
+          <p>{text}</p>
+        </SidebarButtonText>
+      </SidebarButtonBase>
+    </StyledLink>
   );
 };
 

@@ -1,5 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+
+const StyledLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+`;
 
 const LogoButtonBase = styled.div`
   width: 10.8125rem;
@@ -28,7 +34,7 @@ const LogoButtonText = styled.p`
 
 const LogoButton = () => {
   return (
-    <>
+    <StyledLink to="/">
       <LogoButtonBase>
         <LogoButtonIcon>
           <svg
@@ -45,7 +51,7 @@ const LogoButton = () => {
         </LogoButtonIcon>
         <LogoButtonText>MAT</LogoButtonText>
       </LogoButtonBase>
-    </>
+    </StyledLink>
   );
 };
 

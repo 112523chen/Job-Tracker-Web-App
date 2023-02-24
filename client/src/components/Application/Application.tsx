@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { application } from "../model";
 import styled from "styled-components";
+import { useState } from "react";
+import ApplicationView from "../ApplicationView/ApplicationView";
 
 interface Props {
   applicationInfo: application;
+  setIsInAppView: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ApplicationBase = styled.div`
   background-color: #e1e1e1;
-  width: 808px;
+  width: 70%;
   height: 189px;
   display: flex;
   border-radius: 20px;
   margin-bottom: 2.8125rem;
+  &:hover {
+    box-shadow: rgb(0 140 105) 5px 5px 0px;
+  }
 `;
 
 const ApplicationSide = styled.div`
@@ -44,9 +50,23 @@ const ApplicationDescription = styled.div`
   width: 40.5rem;
 `;
 
-const Application: React.FC<Props> = ({ applicationInfo }) => {
+const Application: React.FC<Props> = ({ applicationInfo, setIsInAppView }) => {
+  const [applicationState, setApplicationState] = useState<boolean>(false);
+
+  useEffect(() => {}, [applicationState]);
+
   return (
-    <ApplicationBase>
+    <ApplicationBase
+      onClick={() => (applicationState ? null : setApplicationState(true))}
+    >
+      {applicationState ? (
+        <ApplicationView
+          applicationInfo={applicationInfo}
+          setApplicationState={setApplicationState}
+          applicationState={applicationState}
+          setIsInAppView={setIsInAppView}
+        />
+      ) : null}
       <ApplicationSide></ApplicationSide>
       <ApplicationMain>
         <ApplicationRole>{applicationInfo.title}</ApplicationRole>

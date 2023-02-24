@@ -4,6 +4,11 @@ import styled from "styled-components";
 import SidebarButton from "../SidebarButton/SidebarButton";
 import AddButton from "../AddButton/AddButton";
 
+interface Props {
+  setIsInAddView: React.Dispatch<React.SetStateAction<boolean>>;
+  isInAddView: boolean;
+}
+
 const SideBarBase = styled.div`
   min-width: 15%;
   background-color: #e1e1e1;
@@ -63,7 +68,7 @@ const sidebarData = {
   },
 };
 
-const Sidebar = () => {
+const Sidebar: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
   return (
     <SideBarBase>
       <Main>
@@ -71,14 +76,16 @@ const Sidebar = () => {
         <SidebarButton
           icon={sidebarData.recent.icon}
           text={sidebarData.recent.text}
+          path="/recent"
         />
         <SidebarButton
           icon={sidebarData.data.icon}
           text={sidebarData.data.text}
+          path="/analytics"
         />
       </Main>
       <Action>
-        <AddButton />
+        <AddButton isInAddView={isInAddView} setIsInAddView={setIsInAddView} />
       </Action>
     </SideBarBase>
   );

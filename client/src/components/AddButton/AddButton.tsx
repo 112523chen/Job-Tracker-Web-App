@@ -1,7 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const AddButtonBase = styled.div`
+interface Props {
+  setIsInAddView: React.Dispatch<React.SetStateAction<boolean>>;
+  isInAddView: boolean;
+}
+
+const AddButtonBase = styled.button`
   background-color: #103056;
   border-radius: 20px;
   width: 9.375rem;
@@ -12,13 +17,14 @@ const AddButtonBase = styled.div`
   font-weight: 700;
   font-size: 24px;
   color: white;
+  padding: 1.2rem;
   &:hover {
     cursor: pointer;
   }
 `;
 
 const AddButtonText = styled.div`
-  margin-right: 0.6rem;
+  /* margin-right: 0.3rem; */
 `;
 
 const AddButtonKey = styled.div`
@@ -36,9 +42,12 @@ const AddButtonKey = styled.div`
   }
 `;
 
-const AddButton = () => {
+const AddButton: React.FC<Props> = ({ isInAddView, setIsInAddView }) => {
+  const handleClick = (): void => {
+    setIsInAddView(isInAddView === false ? true : false);
+  };
   return (
-    <AddButtonBase>
+    <AddButtonBase onClick={handleClick}>
       <AddButtonText>Add Job</AddButtonText>
       <AddButtonKey>
         <kbd>⌥J</kbd>

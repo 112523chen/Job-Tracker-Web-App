@@ -9,7 +9,7 @@ interface Props {
   setIsInAppView: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const RecentView: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
+const AnalyticsView: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
   return (
     <div>
       <Sidebar setIsInAddView={setIsInAddView} isInAddView={isInAddView} />
@@ -17,4 +17,4 @@ const RecentView: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
   );
 };
 
-export default RecentView;
+export default AnalyticsView;
