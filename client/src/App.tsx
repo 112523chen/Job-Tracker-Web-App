@@ -1,11 +1,11 @@
-import MainView from "./components/MainView/MainView";
 import { application } from "./components/model";
 import { useState, useEffect } from "react";
 import AddView from "./components/AddView/AddView";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import RecentView from "./components/RecentView/RecentView";
-import AnalyticsView from "./components/AnalyticsView/AnalyticsView";
 import { getApplicationData } from "./helper/api/functions";
+import MainPage from "./components/MainPage/MainPage";
+import RecentPage from "./components/RecentPage/RecentPage";
+import AnalyticsPage from "./components/AnalyticsPage/AnalyticsPage";
 
 const App = () => {
   const [applications, setApplications] = useState<application[]>([]);
@@ -33,7 +33,7 @@ const App = () => {
           <Route
             path="/"
             element={
-              <MainView
+              <MainPage
                 applicationData={applications}
                 setIsInAddView={setIsInAddView}
                 isInAddView={isInAddView}
@@ -45,22 +45,22 @@ const App = () => {
           <Route
             path="/recent"
             element={
-              <RecentView
+              <RecentPage
                 applicationData={applications}
                 setIsInAddView={setIsInAddView}
                 isInAddView={isInAddView}
                 setIsInAppView={setIsInAppView}
+                fetchApplications={fetchApplications}
               />
             }
           />
           <Route
             path="/analytics"
             element={
-              <AnalyticsView
+              <AnalyticsPage
                 applicationData={applications}
                 setIsInAddView={setIsInAddView}
                 isInAddView={isInAddView}
-                setIsInAppView={setIsInAppView}
               />
             }
           />
