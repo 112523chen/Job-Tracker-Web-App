@@ -1,11 +1,11 @@
 import MainView from "./components/MainView/MainView";
 import { application } from "./components/model";
 import { useState, useEffect } from "react";
-import { getApplicationData } from "./helper/functions";
 import AddView from "./components/AddView/AddView";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RecentView from "./components/RecentView/RecentView";
 import AnalyticsView from "./components/AnalyticsView/AnalyticsView";
+import { getApplicationData } from "./helper/api/functions";
 
 const App = () => {
   const [applications, setApplications] = useState<application[]>([]);

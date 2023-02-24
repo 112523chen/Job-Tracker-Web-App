@@ -1,7 +1,30 @@
-import { application } from "../components/model";
+import { applicationStatusType } from "../components/model";
 
-export const getApplicationData = async (): Promise<application[]> => {
-  const response = await fetch("http://localhost:3000/applications");
-  let applications = (await response.json()) as application[];
-  return applications;
+export const getApplicationColor = (status: applicationStatusType): string => {
+  let color: string;
+  switch (status) {
+    case "created":
+      color = "grey";
+      break;
+    case "applied":
+      color = "silver";
+      break;
+    case "assessment":
+      color = "yellow";
+      break;
+    case "interview":
+      color = "orange";
+      break;
+    case "finalRound":
+      color = "blue";
+      break;
+    case "reject":
+      color = "red";
+      break;
+    default:
+      color = "black";
+      break;
+  }
+  console.log(color);
+  return color;
 };

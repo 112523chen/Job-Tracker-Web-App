@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { application } from "../model";
+import { application, applicationStatusType } from "../model";
 import { useState } from "react";
+import { getApplicationColor } from "../../helper/functions";
 
 interface Props {
   applicationInfo: application;
@@ -61,7 +62,8 @@ const FormTop = styled.div`
 `;
 
 const ColorBlock = styled.div`
-  background-color: #aeaeae;
+  /* background-color: #aeaeae; */
+  background-color: ${(props) => props.theme.main};
   height: 3.125rem;
   width: 3.125rem;
   margin-right: 2.1rem;
@@ -189,7 +191,13 @@ const ApplicationView: React.FC<Props> = ({
       <Form onSubmit={handleFormSubmit} id="application-form">
         <FormTop>
           <div className="top">
-            <ColorBlock />
+            <ColorBlock
+              theme={{
+                main: getApplicationColor(
+                  applicationInfo.status as applicationStatusType
+                ),
+              }}
+            />
             <CompanyBlock
               type="text"
               value={formData.company}

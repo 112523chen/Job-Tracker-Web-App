@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { application } from "../model";
+import { application, applicationStatusType } from "../model";
 import styled from "styled-components";
 import { useState } from "react";
 import ApplicationView from "../ApplicationView/ApplicationView";
+import { getApplicationColor } from "../../helper/functions";
 
 interface Props {
   applicationInfo: application;
@@ -22,7 +23,7 @@ const ApplicationBase = styled.div`
 `;
 
 const ApplicationSide = styled.div`
-  background-color: #aeaeae;
+  background-color: ${(props) => props.theme.main};
   width: 2rem;
   border-radius: 20px 0 0 20px;
 `;
@@ -67,7 +68,13 @@ const Application: React.FC<Props> = ({ applicationInfo, setIsInAppView }) => {
           setIsInAppView={setIsInAppView}
         />
       ) : null}
-      <ApplicationSide></ApplicationSide>
+      <ApplicationSide
+        theme={{
+          main: getApplicationColor(
+            applicationInfo.status as applicationStatusType
+          ),
+        }}
+      ></ApplicationSide>
       <ApplicationMain>
         <ApplicationRole>{applicationInfo.title}</ApplicationRole>
         <ApplicationCompany>{applicationInfo.company}</ApplicationCompany>
