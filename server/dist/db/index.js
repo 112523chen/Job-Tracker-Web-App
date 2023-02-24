@@ -7,98 +7,51 @@ const pool = new pg_1.Pool({
     database: process.env.DB,
     port: Number(process.env.DBPORT),
 });
+// Get all applications in database
 const getAllApplications = (request, response) => {
     pool.query("SELECT * FROM applications ORDER BY id", (error, result) => {
         if (error) {
+            response.status(404);
             throw error;
         }
         response.status(200).json(result.rows);
+        console.log("Running Get All Applications Command");
     });
 };
+// Get application by application id
 const getApplicationByID = (request, response) => {
     const id = request.params.id;
     pool.query("SELECT * FROM applications WHERE id = $1", [id], (error, result) => {
         if (error) {
             throw error;
         }
-        response.status(200).json(result.rows);
+        response.status(201).json(result.rows);
     });
 };
-const updateApplication = (request, response) => {
-    const id = request.params.id;
-    const { title, company, description, status, url } = request.query;
-    pool.query("UPDATE applications SET title = $2, company = $3, description = $4, status = $5, url = $6 modified = CURRENT_TIMESTAMP WHERE id = $1", [id, title, company, description, status, url], (error, results) => {
-        if (error) {
-            throw error;
-        }
-        response.status(200).send(`Application modified with ID: ${id}`);
-    });
-};
-const updateApplicationTitle = (request, response) => {
-    const id = request.params.id;
-    const { title } = request.query;
-    pool.query("UPDATE applications SET title = $2, modified = CURRENT_TIMESTAMP WHERE id = $1", [id, title], (error, results) => {
-        if (error) {
-            throw error;
-        }
-        response.status(200).send(`Title modified on application with ID: ${id}`);
-    });
-};
-const updateApplicationCompany = (request, response) => {
-    const id = request.params.id;
-    const { company } = request.query;
-    pool.query("UPDATE applications SET company = $2, modified = CURRENT_TIMESTAMP WHERE id = $1", [id, company], (error, results) => {
-        if (error) {
-            throw error;
-        }
-        response
-            .status(200)
-            .send(`Company modified on application with ID: ${id}`);
-    });
-};
-const updateApplicationDescription = (request, response) => {
-    const id = request.params.id;
-    const { description } = request.query;
-    pool.query("UPDATE applications SET description = $2, modified = CURRENT_TIMESTAMP WHERE id = $1", [id, description], (error, results) => {
-        if (error) {
-            throw error;
-        }
-        response
-            .status(200)
-            .send(`Description modified on application with ID: ${id}`);
-    });
-};
-const updateApplicationStatus = (request, response) => {
-    const id = request.params.id;
-    const { status } = request.query;
-    pool.query("UPDATE applications SET status = $2, modified = CURRENT_TIMESTAMP WHERE id = $1", [id, status], (error, results) => {
-        if (error) {
-            throw error;
-        }
-        response
-            .status(200)
-            .send(`Status modified on application with ID: ${id}`);
-    });
-};
-const updateApplicationURL = (request, response) => {
-    const id = request.params.id;
-    const { url } = request.query;
-    pool.query("UPDATE applications SET url = $2, modified = CURRENT_TIMESTAMP WHERE id = $1", [id, url], (error, results) => {
-        if (error) {
-            throw error;
-        }
-        response.status(200).send(`URL modified on application with ID: ${id}`);
-    });
-};
+// Post a new application into database
 const createApplication = (request, response) => {
-    const { title, company, description, status, url } = request.query;
-    pool.query("INSERT INTO applications (title, company, description, created, modified, status, url) values ($1, $2, $3,CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, $4, $5) RETURNING *", [title, company, description, status, url], (error, results) => {
+    const { title, company, status, url, description } = request.body;
+    pool.query("INSERT INTO applications (title, company, created, modified, status, url, description) values ($1, $2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, $3, $4, $5) RETURNING *", [title, company, status, url, description], (error, results) => {
         if (error) {
+            response.status(400);
             throw error;
         }
         response.status(201).send(`Application has been created`);
     });
 };
+// Update an existing application by application id
+const updateApplication = (request, response) => {
+    const id = request.params.id;
+    const { title, company, description, status, url } = request.body;
+    pool.query("UPDATE applications SET title = $2, company = $3, status = $5, url = $6, modified = CURRENT_TIMESTAMP, description = $4 WHERE id = $1", [id, title, company, description, status, url], (error, results) => {
+        if (error) {
+            response.status(400);
+            throw error;
+        }
+        response.status(201).send(`Application modified with ID: ${id}`);
+    });
+};
+// Delete an existing application by application id
 const deleteApplication = (request, response) => {
     const id = request.params.id;
     pool.query("DELETE FROM applications WHERE id = $1", [id], (error, results) => {
@@ -112,11 +65,6 @@ module.exports = {
     getAllApplications,
     getApplicationByID,
     updateApplication,
-    updateApplicationTitle,
-    updateApplicationCompany,
-    updateApplicationDescription,
-    updateApplicationStatus,
-    updateApplicationURL,
     createApplication,
     deleteApplication,
 };

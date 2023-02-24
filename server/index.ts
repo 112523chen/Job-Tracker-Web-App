@@ -19,17 +19,20 @@ app.get("/", (request: Request, response: Response) => {
   response.json({ info: "HI" });
 });
 
+// Get all applications in database
 app.get("/applications", db.getAllApplications);
-app.post("/applications/", db.createApplication);
-app.delete("/applications/:id", db.deleteApplication);
 
+// Get application by application id
 app.get("/applications/:id", db.getApplicationByID);
+
+// Post a new application into database
+app.post("/applications/", db.createApplication);
+
+// Update an existing application by application id
 app.put("/applications/:id", db.updateApplication);
-app.put("/applications/:id/title", db.updateApplicationTitle);
-app.put("/applications/:id/company", db.updateApplicationCompany);
-app.put("/applications/:id/description", db.updateApplicationDescription);
-app.put("/applications/:id/status", db.updateApplicationStatus);
-app.put("/applications/:id/url", db.updateApplicationURL);
+
+// Delete an existing application by application id
+app.delete("/applications/:id", db.deleteApplication);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
