@@ -58,7 +58,7 @@ const deleteApplication = (request, response) => {
         if (error) {
             throw error;
         }
-        response.status(200).send(`Application deleted with ID: ${id}`);
+        response.status(201).send(`Application deleted with ID: ${id}`);
     });
 };
 module.exports = {

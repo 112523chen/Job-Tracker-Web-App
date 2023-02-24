@@ -80,7 +80,7 @@ const deleteApplication = (request: Request, response: Response) => {
       if (error) {
         throw error;
       }
-      response.status(200).send(`Application deleted with ID: ${id}`);
+      response.status(201).send(`Application deleted with ID: ${id}`);
     }
   );
 };
