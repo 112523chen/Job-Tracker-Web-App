@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from "express";
+import express, { Request, Response } from "express";
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config({ path: "../.env" });
@@ -33,6 +33,9 @@ app.put("/applications/:id", db.updateApplication);
 
 // Delete an existing application by application id
 app.delete("/applications/:id", db.deleteApplication);
+
+// Get data for bar chart
+app.get("/barChartData", db.getBarChartData);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);

@@ -61,10 +61,20 @@ const deleteApplication = (request, response) => {
         response.status(201).send(`Application deleted with ID: ${id}`);
     });
 };
+// Get data for bar chart
+const getBarChartData = (request, response) => {
+    pool.query("SELECT status, COUNT(status) FROM applications GROUP BY status", (error, results) => {
+        if (error) {
+            throw error;
+        }
+        response.status(201).json(results.rows);
+    });
+};
 module.exports = {
     getAllApplications,
     getApplicationByID,
     updateApplication,
     createApplication,
     deleteApplication,
+    getBarChartData,
 };
