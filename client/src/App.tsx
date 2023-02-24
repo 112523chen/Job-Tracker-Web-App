@@ -38,6 +38,7 @@ const App = () => {
                 setIsInAddView={setIsInAddView}
                 isInAddView={isInAddView}
                 setIsInAppView={setIsInAppView}
+                fetchApplications={fetchApplications}
               />
             }
           />

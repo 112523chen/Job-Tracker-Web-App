@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { application, applicationStatusType } from "../model";
 import { useState } from "react";
 import { getApplicationColor } from "../../helper/functions";
+import { updateApplication } from "../../helper/api/functions";
 
 interface Props {
   applicationInfo: application;
@@ -155,20 +156,11 @@ const ApplicationView: React.FC<Props> = ({
         applicationInfo.description === formData.description;
       if (isTitleDifferent || isCompanyDifferent || isDescriptionDifferent) {
         let id = applicationInfo.id;
-        let response = await fetch(`http://localhost:3000/applications/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
-
-        if (response.status === 201) {
-          console.log("SUCCESS");
+        let response = await updateApplication(id, formData);
+        if (response === "Passed") {
           handleAppViewChange();
         }
       } else {
-        console.log("No Updates");
         handleAppViewChange();
       }
     } catch (error) {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { addApplication } from "../../helper/api/functions";
 
 const AddViewBase = styled.div`
   position: fixed;
@@ -105,24 +106,15 @@ const AddView: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    try {
-      let data = {
-        ...formData,
-        status: "created",
-      };
-      let res = await fetch("http://localhost:3000/applications", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      console.log(JSON.stringify(data));
-      if (res.status === 201) {
-        handleAddViewChange();
-      }
-    } catch (error) {
-      console.log(error);
+    let data = {
+      ...formData,
+      status: "created",
+    };
+    let response = await addApplication(data);
+    if (response == "Passed") {
+      handleAddViewChange();
+    } else {
+      throw Error("Not successful");
     }
   };
 

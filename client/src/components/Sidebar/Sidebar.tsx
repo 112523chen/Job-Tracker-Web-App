@@ -48,6 +48,7 @@ const sidebarData = {
       </svg>
     ),
     text: "Recents",
+    path: "/recent",
   },
   data: {
     icon: (
@@ -65,6 +66,7 @@ const sidebarData = {
       </svg>
     ),
     text: "Analytics",
+    path: "/analytics",
   },
 };
 
@@ -76,12 +78,12 @@ const Sidebar: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
         <SidebarButton
           icon={sidebarData.recent.icon}
           text={sidebarData.recent.text}
-          path="/recent"
+          path={sidebarData.recent.path}
         />
         <SidebarButton
           icon={sidebarData.data.icon}
           text={sidebarData.data.text}
-          path="/analytics"
+          path={sidebarData.recent.path}
         />
       </Main>
       <Action>

@@ -25,6 +25,5 @@ export const getApplicationColor = (status: applicationStatusType): string => {
       color = "black";
       break;
   }
-  console.log(color);
   return color;
 };

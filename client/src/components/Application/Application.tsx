@@ -4,10 +4,13 @@ import styled from "styled-components";
 import { useState } from "react";
 import ApplicationView from "../ApplicationView/ApplicationView";
 import { getApplicationColor } from "../../helper/functions";
+import DeleteButton from "../DeleteButton/DeleteButton";
+import EditButton from "../EditButton/EditButton";
 
 interface Props {
   applicationInfo: application;
   setIsInAppView: React.Dispatch<React.SetStateAction<boolean>>;
+  fetchApplications: () => Promise<void>;
 }
 
 const ApplicationBase = styled.div`
@@ -51,14 +54,40 @@ const ApplicationDescription = styled.div`
   width: 40.5rem;
 `;
 
-const Application: React.FC<Props> = ({ applicationInfo, setIsInAppView }) => {
+const ApplicationActions = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  margin: 0 2rem;
+`;
+
+const Application: React.FC<Props> = ({
+  applicationInfo,
+  setIsInAppView,
+  fetchApplications,
+}) => {
   const [applicationState, setApplicationState] = useState<boolean>(false);
+  const [hoverState, setHoverState] = useState<boolean>(false);
+
+  const handleHoverEnter = (): void => {
+    setHoverState(true);
+  };
+
+  const handleHoverExit = (): void => {
+    setHoverState(false);
+  };
 
   useEffect(() => {}, [applicationState]);
 
   return (
     <ApplicationBase
-      onClick={() => (applicationState ? null : setApplicationState(true))}
+      onMouseEnter={() => {
+        handleHoverEnter();
+      }}
+      onMouseLeave={() => {
+        handleHoverExit();
+      }}
     >
       {applicationState ? (
         <ApplicationView
@@ -82,6 +111,18 @@ const Application: React.FC<Props> = ({ applicationInfo, setIsInAppView }) => {
           {applicationInfo.description}
         </ApplicationDescription>
       </ApplicationMain>
+      {hoverState ? (
+        <ApplicationActions>
+          <EditButton
+            applicationState={applicationState}
+            setApplicationState={setApplicationState}
+          />
+          <DeleteButton
+            id={applicationInfo.id}
+            fetchApplications={fetchApplications}
+          />
+        </ApplicationActions>
+      ) : null}
     </ApplicationBase>
   );
 };

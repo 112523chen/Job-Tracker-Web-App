@@ -16,3 +16,11 @@ export interface application {
   status: string;
   url: string;
 }
+
+export interface newFormData {
+  status: string;
+  title: string;
+  company: string;
+  url: string;
+  description: string;
+}

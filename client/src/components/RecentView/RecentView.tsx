@@ -13,6 +13,7 @@ const RecentView: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
   return (
     <div>
       <Sidebar setIsInAddView={setIsInAddView} isInAddView={isInAddView} />
+      {/* // TODO: Add Future Section View Component */}
     </div>
   );
 };

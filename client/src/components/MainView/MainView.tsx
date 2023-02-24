@@ -9,6 +9,7 @@ interface Props {
   setIsInAddView: React.Dispatch<React.SetStateAction<boolean>>;
   isInAddView: boolean;
   setIsInAppView: React.Dispatch<React.SetStateAction<boolean>>;
+  fetchApplications: () => Promise<void>;
 }
 
 interface State {
@@ -25,6 +26,7 @@ const MainView: React.FC<Props> = ({
   setIsInAddView,
   isInAddView,
   setIsInAppView,
+  fetchApplications,
 }) => {
   return (
     <MainViewBase isInAddView={isInAddView}>
@@ -32,6 +34,7 @@ const MainView: React.FC<Props> = ({
       <MainSection
         applicationData={applicationData}
         setIsInAppView={setIsInAppView}
+        fetchApplications={fetchApplications}
       />
     </MainViewBase>
   );
