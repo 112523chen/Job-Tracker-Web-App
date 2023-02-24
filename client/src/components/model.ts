@@ -24,3 +24,8 @@ export interface newFormData {
   url: string;
   description: string;
 }
+
+export interface barChartDataType {
+  status: string;
+  count: string;
+}

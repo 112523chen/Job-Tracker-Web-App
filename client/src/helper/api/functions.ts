@@ -1,4 +1,8 @@
-import { application, newFormData } from "../../components/model";
+import {
+  application,
+  barChartDataType,
+  newFormData,
+} from "../../components/model";
 
 export const getApplicationData = async (): Promise<application[]> => {
   const response = await fetch("http://localhost:3000/applications");
@@ -74,4 +78,10 @@ export const updateApplication = async (
   } else {
     return "Failed";
   }
+};
+
+export const getBarChartData = async (): Promise<barChartDataType[]> => {
+  const response = await fetch("http://localhost:3000/barChartData");
+  let data = (await response.json()) as barChartDataType[];
+  return data;
 };

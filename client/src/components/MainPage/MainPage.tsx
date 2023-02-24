@@ -16,12 +16,12 @@ interface State {
   isInAddView: boolean;
 }
 
-const MainViewBase = styled.div<State>`
+const MainPageBase = styled.div<State>`
   display: flex;
   ${(props) => (props.isInAddView === false ? null : "")}
 `;
 
-const MainView: React.FC<Props> = ({
+const MainPage: React.FC<Props> = ({
   applicationData,
   setIsInAddView,
   isInAddView,
@@ -29,15 +29,15 @@ const MainView: React.FC<Props> = ({
   fetchApplications,
 }) => {
   return (
-    <MainViewBase isInAddView={isInAddView}>
+    <MainPageBase isInAddView={isInAddView}>
       <Sidebar setIsInAddView={setIsInAddView} isInAddView={isInAddView} />
       <MainSection
         applicationData={applicationData}
         setIsInAppView={setIsInAppView}
         fetchApplications={fetchApplications}
       />
-    </MainViewBase>
+    </MainPageBase>
   );
 };
 
-export default MainView;
+export default MainPage;

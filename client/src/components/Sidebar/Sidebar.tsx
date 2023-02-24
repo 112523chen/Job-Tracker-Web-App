@@ -83,7 +83,7 @@ const Sidebar: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
         <SidebarButton
           icon={sidebarData.data.icon}
           text={sidebarData.data.text}
-          path={sidebarData.recent.path}
+          path={sidebarData.data.path}
         />
       </Main>
       <Action>
