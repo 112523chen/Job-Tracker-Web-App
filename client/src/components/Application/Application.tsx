@@ -18,6 +18,7 @@ const ApplicationBase = styled.div`
   width: 70%;
   height: 189px;
   display: flex;
+  align-items: space-around;
   border-radius: 20px;
   margin-bottom: 2.8125rem;
   &:hover {
@@ -27,12 +28,13 @@ const ApplicationBase = styled.div`
 
 const ApplicationSide = styled.div`
   background-color: ${(props) => props.theme.main};
-  width: 2rem;
+  width: 5%;
   border-radius: 20px 0 0 20px;
 `;
 
 const ApplicationMain = styled.div`
   margin-left: 1.5rem;
+  width: 80%;
 `;
 
 const ApplicationRole = styled.p`
@@ -59,7 +61,8 @@ const ApplicationActions = styled.div`
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  margin: 0 2rem;
+  /* margin: 0 2rem; */
+  width: 15%;
 `;
 
 const Application: React.FC<Props> = ({
