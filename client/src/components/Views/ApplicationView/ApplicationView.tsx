@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { application, applicationStatusType } from "../model";
+import { application, applicationStatusType } from "../../model";
 import { useState } from "react";
-import { getApplicationColor } from "../../helper/functions";
-import { updateApplication } from "../../helper/api/functions";
+import { getApplicationColor } from "../../../helper/functions";
+import { updateApplication } from "../../../helper/api/functions";
 
 interface Props {
   applicationInfo: application;

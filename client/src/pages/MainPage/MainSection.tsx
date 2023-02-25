@@ -1,10 +1,10 @@
 import React from "react";
-import { application } from "../model";
-import Application from "../Application/Application";
+import { application } from "../../components/model";
+import Application from "../../components/Application/Application";
 import styled from "styled-components";
+import { useOutletContext } from "react-router-dom";
 
 interface Props {
-  applicationData: application[];
   setIsInAppView: React.Dispatch<React.SetStateAction<boolean>>;
   fetchApplications: () => Promise<void>;
 }
@@ -17,13 +17,14 @@ const MainSectionBase = styled.div`
 `;
 
 const MainSection: React.FC<Props> = ({
-  applicationData,
   setIsInAppView,
   fetchApplications,
 }) => {
+  const applications = useOutletContext<application[]>();
+
   return (
     <MainSectionBase>
-      {applicationData.map((app) => (
+      {applications.map((app) => (
         <Application
           applicationInfo={app}
           key={app.id}

@@ -1,8 +1,8 @@
 import React from "react";
-import LogoButton from "../LogoButton/LogoButton";
+import LogoButton from "../Buttons/LogoButton/LogoButton";
 import styled from "styled-components";
-import SidebarButton from "../SidebarButton/SidebarButton";
-import AddButton from "../AddButton/AddButton";
+import SidebarButton from "../Buttons/SidebarButton/SidebarButton";
+import AddButton from "../Buttons/AddButton/AddButton";
 
 interface Props {
   setIsInAddView: React.Dispatch<React.SetStateAction<boolean>>;

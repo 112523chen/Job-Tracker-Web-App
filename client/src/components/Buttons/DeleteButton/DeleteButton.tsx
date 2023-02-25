@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { removeApplication } from "../../helper/api/functions";
+import { removeApplication } from "../../../helper/api/functions";
 
 const DeleteButtonBase = styled.button``;
 

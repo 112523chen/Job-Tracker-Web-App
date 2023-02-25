@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { addApplication } from "../../helper/api/functions";
+import { addApplication } from "../../../helper/api/functions";
 
 const AddViewBase = styled.div`
   position: fixed;

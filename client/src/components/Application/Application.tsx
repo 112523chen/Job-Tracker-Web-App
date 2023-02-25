@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { application, applicationStatusType } from "../model";
 import styled from "styled-components";
 import { useState } from "react";
-import ApplicationView from "../ApplicationView/ApplicationView";
+import ApplicationView from "../Views/ApplicationView/ApplicationView";
 import { getApplicationColor } from "../../helper/functions";
-import DeleteButton from "../DeleteButton/DeleteButton";
-import EditButton from "../EditButton/EditButton";
+import DeleteButton from "../Buttons/DeleteButton/DeleteButton";
+import EditButton from "../Buttons/EditButton/EditButton";
 
 interface Props {
   applicationInfo: application;

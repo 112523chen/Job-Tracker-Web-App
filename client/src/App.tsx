@@ -1,11 +1,12 @@
-import { application } from "./components/model";
 import { useState, useEffect } from "react";
-import AddView from "./components/AddView/AddView";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MainPage from "./pages/MainPage/MainPage";
+import MainSection from "./pages/MainPage/MainSection";
+import RecentSection from "./pages/RecentPage/RecentSection";
+import AnalyticsSection from "./pages/AnalyticsPage/AnalyticsSection";
+import AddView from "./components/Views/AddView/AddView";
+import { application } from "./components/model";
 import { getApplicationData } from "./helper/api/functions";
-import MainPage from "./components/MainPage/MainPage";
-import RecentPage from "./components/RecentPage/RecentPage";
-import AnalyticsPage from "./components/AnalyticsPage/AnalyticsPage";
 
 const App = () => {
   const [applications, setApplications] = useState<application[]>([]);
@@ -37,33 +38,29 @@ const App = () => {
                 applicationData={applications}
                 setIsInAddView={setIsInAddView}
                 isInAddView={isInAddView}
-                setIsInAppView={setIsInAppView}
-                fetchApplications={fetchApplications}
               />
             }
-          />
-          <Route
-            path="/recent"
-            element={
-              <RecentPage
-                applicationData={applications}
-                setIsInAddView={setIsInAddView}
-                isInAddView={isInAddView}
-                setIsInAppView={setIsInAppView}
-                fetchApplications={fetchApplications}
-              />
-            }
-          />
-          <Route
-            path="/analytics"
-            element={
-              <AnalyticsPage
-                applicationData={applications}
-                setIsInAddView={setIsInAddView}
-                isInAddView={isInAddView}
-              />
-            }
-          />
+          >
+            <Route
+              index
+              element={
+                <MainSection
+                  fetchApplications={fetchApplications}
+                  setIsInAppView={setIsInAppView}
+                />
+              }
+            />
+            <Route
+              path="recent"
+              element={
+                <RecentSection
+                  fetchApplications={fetchApplications}
+                  setIsInAppView={setIsInAppView}
+                />
+              }
+            />
+            <Route path="analytics" element={<AnalyticsSection />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
