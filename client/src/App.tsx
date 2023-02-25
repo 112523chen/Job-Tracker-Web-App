@@ -1,27 +1,42 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import MainPage from "./pages/MainPage/MainPage";
 import MainSection from "./pages/MainPage/MainSection";
 import RecentSection from "./pages/RecentPage/RecentSection";
 import AnalyticsSection from "./pages/AnalyticsPage/AnalyticsSection";
 import AddView from "./components/Views/AddView/AddView";
 import { application } from "./components/model";
-import { getApplicationData } from "./helper/api/functions";
+import {
+  getApplicationData,
+  getApplicationDataByModifiedDate,
+} from "./helper/api/functions";
 
 const App = () => {
   const [applications, setApplications] = useState<application[]>([]);
   const [isInAddView, setIsInAddView] = useState<boolean>(false);
   const [isInAppView, setIsInAppView] = useState<boolean>(false);
+  const [isInRecentView, setIsInRecentView] = useState<boolean>(false);
 
-  const fetchApplications = async () => {
-    const applicationData = await getApplicationData();
+  const fetchApplications = async (dataKind: string = "") => {
+    let applicationData;
+
+    switch (dataKind) {
+      case "recentModified":
+        applicationData = await getApplicationDataByModifiedDate();
+        break;
+      default:
+        applicationData = await getApplicationData();
+        break;
+    }
+
     setApplications(applicationData);
   };
 
   useEffect(() => {
-    fetchApplications();
+    let arg = isInRecentView ? "recentModified" : "";
+    fetchApplications(arg);
     setIsInAppView(false);
-  }, [isInAddView, isInAppView]);
+  }, [isInAddView, isInAppView, isInRecentView]);
 
   return (
     <div className="App">
@@ -38,6 +53,7 @@ const App = () => {
                 applicationData={applications}
                 setIsInAddView={setIsInAddView}
                 isInAddView={isInAddView}
+                setIsInRecentView={setIsInRecentView}
               />
             }
           >

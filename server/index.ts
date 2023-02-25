@@ -22,6 +22,9 @@ app.get("/", (request: Request, response: Response) => {
 // Get all applications in database
 app.get("/applications", db.getAllApplications);
 
+// Get all applications in database by
+app.get("/application/sorted/modified/DESC", db.getAllApplicationsByModified);
+
 // Get application by application id
 app.get("/applications/:id", db.getApplicationByID);
 

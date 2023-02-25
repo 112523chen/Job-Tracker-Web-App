@@ -1,30 +1,30 @@
 import React from "react";
 import { application } from "../../components/model";
 import Application from "../../components/Application/Application";
-import styled from "styled-components";
 import { useOutletContext } from "react-router-dom";
+import AddButton from "../../components/Buttons/AddButton/AddButton";
+import { MainSectionBase } from "./MainPage.style";
 
 interface Props {
   setIsInAppView: React.Dispatch<React.SetStateAction<boolean>>;
   fetchApplications: () => Promise<void>;
 }
 
-const MainSectionBase = styled.div`
-  margin-left: 15%;
-  padding-left: 109px;
-  padding-top: 54px;
-  width: 100%;
-`;
-
 const MainSection: React.FC<Props> = ({
   setIsInAppView,
   fetchApplications,
 }) => {
-  const applications = useOutletContext<application[]>();
+  const { applicationData, isInAddView, setIsInAddView } = useOutletContext<{
+    applicationData: application[];
+    pathname: string;
+    isInAddView: boolean;
+    setIsInAddView: React.Dispatch<React.SetStateAction<boolean>>;
+  }>();
 
   return (
     <MainSectionBase>
-      {applications.map((app) => (
+      <AddButton isInAddView={isInAddView} setIsInAddView={setIsInAddView} />
+      {applicationData.map((app) => (
         <Application
           applicationInfo={app}
           key={app.id}

@@ -9,7 +9,18 @@ const pool = new pg_1.Pool({
 });
 // Get all applications in database
 const getAllApplications = (request, response) => {
-    pool.query("SELECT * FROM applications ORDER BY id", (error, result) => {
+    pool.query("SELECT * FROM applications ORDER BY created DESC", (error, result) => {
+        if (error) {
+            response.status(404);
+            throw error;
+        }
+        response.status(200).json(result.rows);
+        console.log("Running Get All Applications Command");
+    });
+};
+// Get all applications in database
+const getAllApplicationsByModified = (request, response) => {
+    pool.query("SELECT * FROM applications ORDER BY modified DESC", (error, result) => {
         if (error) {
             response.status(404);
             throw error;
@@ -72,6 +83,7 @@ const getBarChartData = (request, response) => {
 };
 module.exports = {
     getAllApplications,
+    getAllApplicationsByModified,
     getApplicationByID,
     updateApplication,
     createApplication,

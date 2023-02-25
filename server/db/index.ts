@@ -10,14 +10,32 @@ const pool = new Pool({
 
 // Get all applications in database
 const getAllApplications = (request: Request, response: Response) => {
-  pool.query("SELECT * FROM applications ORDER BY id", (error, result) => {
-    if (error) {
-      response.status(404);
-      throw error;
+  pool.query(
+    "SELECT * FROM applications ORDER BY created DESC",
+    (error, result) => {
+      if (error) {
+        response.status(404);
+        throw error;
+      }
+      response.status(200).json(result.rows);
+      console.log("Running Get All Applications Command");
     }
-    response.status(200).json(result.rows);
-    console.log("Running Get All Applications Command");
-  });
+  );
+};
+
+// Get all applications in database
+const getAllApplicationsByModified = (request: Request, response: Response) => {
+  pool.query(
+    "SELECT * FROM applications ORDER BY modified DESC",
+    (error, result) => {
+      if (error) {
+        response.status(404);
+        throw error;
+      }
+      response.status(200).json(result.rows);
+      console.log("Running Get All Applications Command");
+    }
+  );
 };
 
 // Get application by application id
@@ -100,6 +118,7 @@ const getBarChartData = (request: Request, response: Response) => {
 
 module.exports = {
   getAllApplications,
+  getAllApplicationsByModified,
   getApplicationByID,
   updateApplication,
   createApplication,

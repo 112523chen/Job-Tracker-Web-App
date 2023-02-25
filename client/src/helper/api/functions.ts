@@ -10,6 +10,16 @@ export const getApplicationData = async (): Promise<application[]> => {
   return applications;
 };
 
+export const getApplicationDataByModifiedDate = async (): Promise<
+  application[]
+> => {
+  const response = await fetch(
+    "http://localhost:3000/application/sorted/modified/DESC"
+  );
+  let applications = (await response.json()) as application[];
+  return applications;
+};
+
 export const addApplication = async (
   data: newFormData
 ): Promise<string | undefined> => {

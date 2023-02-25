@@ -1,7 +1,5 @@
 import React from "react";
-import styled from "styled-components";
-
-const EditButtonBase = styled.button``;
+import { EditButtonBase } from "./EditButton.style";
 
 interface Props {
   applicationState: boolean;
