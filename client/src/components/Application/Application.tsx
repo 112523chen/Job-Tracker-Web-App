@@ -28,7 +28,7 @@ const ApplicationBase = styled.div`
 
 const ApplicationSide = styled.div`
   background-color: ${(props) => props.theme.main};
-  width: 5%;
+  width: 3rem;
   border-radius: 20px 0 0 20px;
 `;
 
@@ -114,18 +114,20 @@ const Application: React.FC<Props> = ({
           {applicationInfo.description}
         </ApplicationDescription>
       </ApplicationMain>
-      {hoverState ? (
-        <ApplicationActions>
-          <EditButton
-            applicationState={applicationState}
-            setApplicationState={setApplicationState}
-          />
-          <DeleteButton
-            id={applicationInfo.id}
-            fetchApplications={fetchApplications}
-          />
-        </ApplicationActions>
-      ) : null}
+      <ApplicationActions>
+        {hoverState ? (
+          <>
+            <EditButton
+              applicationState={applicationState}
+              setApplicationState={setApplicationState}
+            />
+            <DeleteButton
+              id={applicationInfo.id}
+              fetchApplications={fetchApplications}
+            />
+          </>
+        ) : null}
+      </ApplicationActions>
     </ApplicationBase>
   );
 };
