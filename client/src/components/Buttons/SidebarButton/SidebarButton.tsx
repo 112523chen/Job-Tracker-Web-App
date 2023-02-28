@@ -15,7 +15,6 @@ interface Props {
 }
 
 const SidebarButton: React.FC<Props> = ({ icon, text, path, isInAddView }) => {
-  console.log(isInAddView);
   return (
     <StyledLink to={isInAddView ? "" : path}>
       <SidebarButtonBase>

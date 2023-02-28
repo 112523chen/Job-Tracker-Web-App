@@ -9,20 +9,24 @@ export const StyledLink = styled(Link)`
 export const SidebarButtonBase = styled.div`
   display: flex;
   background-color: white;
+  background-color: #3a87e6;
   align-items: center;
   justify-content: center;
-  width: fit-content;
-  height: 10%;
-  margin: 0 auto 2.8125rem auto;
+  width: 15rem;
+  height: 3rem;
+  margin: 0 1rem 2rem 1rem;
   padding: 0.1rem 0.3rem;
   border-radius: 5px;
-  box-shadow: #b3b3b3 1px 5px 0px;
+  border: 1px;
   &:hover {
     cursor: pointer;
+    box-shadow: #b3b3b3 1px 5px 0px;
+    transform: translateY(-5px);
   }
   &:active {
     box-shadow: none;
     transform: translateY(5px);
+    scale: 0.97;
   }
 `;
 
@@ -33,6 +37,7 @@ export const SidebarButtonIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  fill: white;
 `;
 
 export const SidebarButtonText = styled.div`
@@ -42,5 +47,6 @@ export const SidebarButtonText = styled.div`
 
   p {
     color: black;
+    color: white;
   }
 `;

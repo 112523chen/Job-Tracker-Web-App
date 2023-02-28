@@ -24,9 +24,11 @@ export const LogoButtonIcon = styled.svg`
   width: 50px;
   height: 50px;
   margin-right: 0.5625rem;
+  fill: white;
 `;
 
 export const LogoButtonText = styled.p`
   font-size: 2.375rem;
   weight: 800;
+  color: white;
 `;

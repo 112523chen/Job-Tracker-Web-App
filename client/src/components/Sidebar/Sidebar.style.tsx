@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const SideBarBase = styled.div`
   min-width: 15%;
-  background-color: #e1e1e1;
+  background-color: #596a7a;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
