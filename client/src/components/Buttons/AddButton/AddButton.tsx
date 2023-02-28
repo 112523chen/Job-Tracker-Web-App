@@ -4,14 +4,20 @@ import { AddButtonBase } from "./AddButton.style";
 interface Props {
   setIsInAddView: React.Dispatch<React.SetStateAction<boolean>>;
   isInAddView: boolean;
+  isInAppView: boolean;
 }
 
-const AddButton: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
+const AddButton: React.FC<Props> = ({
+  setIsInAddView,
+  isInAddView,
+  isInAppView,
+}) => {
   const handleClick = (): void => {
     setIsInAddView(isInAddView === false ? true : false);
   };
+
   return (
-    <AddButtonBase onClick={handleClick}>
+    <AddButtonBase onClick={handleClick} disabled={isInAppView}>
       <svg
         width="30"
         height="30"

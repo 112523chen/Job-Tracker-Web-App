@@ -1,4 +1,3 @@
-import React from "react";
 import { SubmitButton as Button } from "./SubmitButton.style";
 
 const SubmitButton = () => {

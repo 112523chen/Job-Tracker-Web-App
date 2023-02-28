@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { addApplication } from "../../../helper/api/functions";
-import ExitButton from "../../FormParts/ExitButton/ExitButton";
+import ExitButton from "./FormParts/ExitButton/ExitButton";
 
 import { AddViewBase, Form, FormCenter, H1 } from "./AddView.style";
-import InputsContainer from "../../FormParts/InputContainer/InputsContainer";
+import InputsContainer from "./FormParts/InputContainer/InputsContainer";
 import { addViewFormData } from "../../model";
-import { SubmitButton } from "../../FormParts/SubmitButton/SubmitButton.style";
+import { SubmitButton } from "./FormParts/SubmitButton/SubmitButton.style";
 
 interface Props {
   setIsInAddView: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,11 +13,13 @@ interface Props {
 }
 
 const AddView: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
-  const [formData, setFormData] = useState<addViewFormData>({
+  let initialData: addViewFormData = {
     title: "",
     company: "",
     url: "",
-  });
+  };
+
+  const [formData, setFormData] = useState<addViewFormData>(initialData);
 
   const handleAddViewChange = () => {
     isInAddView ? setIsInAddView(false) : setIsInAddView(true);
@@ -42,7 +44,7 @@ const AddView: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
     let data = {
       ...formData,
       description: "",
-      status: "created",
+      status: "Created",
     };
     let response = await addApplication(data);
     if (response == "Passed") {

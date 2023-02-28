@@ -4,15 +4,21 @@ import { EditButtonBase } from "./EditButton.style";
 interface Props {
   applicationState: boolean;
   setApplicationState: React.Dispatch<React.SetStateAction<boolean>>;
+  isInAppView: boolean;
+  setIsInAppView: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const EditButton: React.FC<Props> = ({
   applicationState,
   setApplicationState,
+  isInAppView,
+  setIsInAppView,
 }) => {
   const handleClick = () => {
     applicationState ? null : setApplicationState(true);
+    isInAppView ? null : setIsInAppView(true);
   };
+
   return (
     <EditButtonBase onClick={handleClick}>
       <svg

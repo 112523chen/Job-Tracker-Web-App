@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage/MainPage";
 import MainSection from "./pages/MainPage/MainSection";
 import RecentSection from "./pages/RecentPage/RecentSection";
@@ -35,7 +35,6 @@ const App = () => {
   useEffect(() => {
     let arg = isInRecentView ? "recentModified" : "";
     fetchApplications(arg);
-    setIsInAppView(false);
   }, [isInAddView, isInAppView, isInRecentView]);
 
   return (
@@ -63,6 +62,7 @@ const App = () => {
                 <MainSection
                   fetchApplications={fetchApplications}
                   setIsInAppView={setIsInAppView}
+                  isInAppView={isInAppView}
                 />
               }
             />

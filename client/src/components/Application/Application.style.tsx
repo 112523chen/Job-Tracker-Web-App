@@ -54,6 +54,5 @@ export const ApplicationActions = styled.div`
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  /* margin: 0 2rem; */
   width: 15%;
 `;

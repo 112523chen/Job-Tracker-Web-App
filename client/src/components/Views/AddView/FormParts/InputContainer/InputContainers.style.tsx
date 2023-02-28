@@ -4,7 +4,6 @@ export const InputContainer = styled.div`
   position: relative;
   margin: 2rem 1rem;
   width: 25rem;
-  /* background-color: red; */
   input {
     font-size: 1.2rem;
     padding: 10px 10px 10px 10px;

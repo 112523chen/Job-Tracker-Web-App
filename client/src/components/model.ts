@@ -1,10 +1,19 @@
 export type applicationStatusType =
-  | "created"
-  | "applied"
-  | "assessment"
-  | "interview"
-  | "finalRound"
-  | "reject";
+  | "Created"
+  | "Applied"
+  | "Assessment"
+  | "Interview"
+  | "Final Round"
+  | "Reject";
+
+export const applicationStatuses: string[] = [
+  "Created",
+  "Applied",
+  "Assessment",
+  "Interview",
+  "Final Round",
+  "Reject",
+];
 
 export interface application {
   id: number;
@@ -17,12 +26,25 @@ export interface application {
   url: string;
 }
 
+export interface MainPageStates {
+  applicationData: application[];
+  pathname: string;
+  isInAddView: boolean;
+  setIsInAddView: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 export interface newFormData {
   status: string;
   title: string;
   company: string;
   url: string;
   description: string;
+}
+
+export interface addViewFormData {
+  title: string;
+  company: string;
+  url: string;
 }
 
 export interface barChartDataType {

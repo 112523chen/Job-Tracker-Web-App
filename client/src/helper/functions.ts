@@ -1,24 +1,24 @@
-import { applicationStatusType } from "../components/model";
+import { addViewFormData, applicationStatusType } from "../components/model";
 
 export const getApplicationColor = (status: applicationStatusType): string => {
   let color: string;
   switch (status) {
-    case "created":
+    case "Created":
       color = "grey";
       break;
-    case "applied":
+    case "Applied":
       color = "silver";
       break;
-    case "assessment":
+    case "Assessment":
       color = "yellow";
       break;
-    case "interview":
+    case "Interview":
       color = "orange";
       break;
-    case "finalRound":
+    case "Final Round":
       color = "blue";
       break;
-    case "reject":
+    case "Reject":
       color = "red";
       break;
     default:
@@ -26,4 +26,49 @@ export const getApplicationColor = (status: applicationStatusType): string => {
       break;
   }
   return color;
+};
+
+export const getLabel = (i: string): string => {
+  let result: string;
+  switch (i) {
+    case "title":
+      result = "Job Title";
+      break;
+    case "company":
+      result = "Company";
+      break;
+    case "url":
+      result = "Link";
+      break;
+    // case "description":
+    //   result = "Description";
+    //   break;
+    default:
+      result = "";
+      break;
+  }
+
+  return result;
+};
+
+export const getFormType = (formData: addViewFormData, i: string): string => {
+  let result: string;
+  switch (i) {
+    case "title":
+      result = formData.title;
+      break;
+    case "company":
+      result = formData.company;
+      break;
+    case "url":
+      result = formData.url;
+      break;
+    // case "description":
+    //   result = formData.description;
+    //   break;
+    default:
+      result = "";
+      break;
+  }
+  return result;
 };

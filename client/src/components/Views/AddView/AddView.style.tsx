@@ -38,6 +38,5 @@ export const FormCenter = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  /* margin: 5rem 0 0 0; */
   width: fit-content;
 `;

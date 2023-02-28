@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ExitButton = styled.button`
   position: absolute;
   right: 4%;
-  top: 5%;
+  top: 1.5rem;
   padding: 0px;
   border: 0;
   border-radius: 5px;
@@ -14,6 +14,12 @@ export const ExitButton = styled.button`
     background-color: #ececec;
     cursor: pointer;
   }
+
+  &:active {
+    background-color: #f0f0f1;
+    fill: rgba(0, 0, 0, 0.65);
+  }
+
   svg {
     display: flex;
     justify-content: center;

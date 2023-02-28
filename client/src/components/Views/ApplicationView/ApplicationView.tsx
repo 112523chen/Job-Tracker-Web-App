@@ -1,21 +1,17 @@
-import React from "react";
-import { application, applicationStatusType } from "../../model";
-import { useState } from "react";
-import { getApplicationColor } from "../../../helper/functions";
+import React, { useState } from "react";
+import ExitButton from "./FormParts/ExitButton";
+import { application, applicationStatuses } from "../../model";
 import { updateApplication } from "../../../helper/api/functions";
 import {
   AppViewBase,
-  ColorBlock,
   CompanyBlock,
-  CreatedTimeBlock,
-  Description,
-  ExitButton,
   Form,
-  FormBottom,
-  FormTop,
   Label,
-  ModifiedTimeBlock,
+  LinkInput,
+  Select,
   TextArea,
+  TextAreaLabel,
+  TimeBlock,
   TitleBlock,
 } from "./ApplicationView.style";
 
@@ -31,14 +27,16 @@ const ApplicationView: React.FC<Props> = ({
   setApplicationState,
   setIsInAppView,
 }) => {
-  const [formData, setFormData] = useState(applicationInfo);
+  const [formData, setFormData] = useState<application>(applicationInfo);
 
   const handleAppViewChange = () => {
     setApplicationState(false);
-    setIsInAppView(true);
+    setIsInAppView(false);
   };
 
-  const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFormChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
@@ -52,9 +50,15 @@ const ApplicationView: React.FC<Props> = ({
     try {
       const isTitleDifferent = applicationInfo.title === formData.title;
       const isCompanyDifferent = applicationInfo.company === formData.company;
+      const isStatusDifferent = applicationInfo.status === formData.status;
       const isDescriptionDifferent =
         applicationInfo.description === formData.description;
-      if (isTitleDifferent || isCompanyDifferent || isDescriptionDifferent) {
+      if (
+        isTitleDifferent ||
+        isCompanyDifferent ||
+        isDescriptionDifferent ||
+        isStatusDifferent
+      ) {
         let id = applicationInfo.id;
         let response = await updateApplication(id, formData);
         if (response === "Passed") {
@@ -70,64 +74,57 @@ const ApplicationView: React.FC<Props> = ({
 
   return (
     <AppViewBase>
-      <ExitButton form="application-form" type="submit">
-        <svg
-          width="48"
-          height="48"
-          viewBox="0 0 48 48"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M12.8 38L10 35.2L21.2 24L10 12.8L12.8 10L24 21.2L35.2 10L38 12.8L26.8 24L38 35.2L35.2 38L24 26.8L12.8 38Z" />
-        </svg>
-      </ExitButton>
+      <ExitButton />
       <Form onSubmit={handleFormSubmit} id="application-form">
-        <FormTop>
-          <div className="top">
-            <ColorBlock
-              theme={{
-                main: getApplicationColor(
-                  applicationInfo.status as applicationStatusType
-                ),
-              }}
-            />
-            <CompanyBlock
-              type="text"
-              value={formData.company}
-              name="company"
+        <div className="class1 box">
+          <CompanyBlock
+            type="text"
+            value={formData.company}
+            onChange={handleFormChange}
+            name="company"
+          />
+          <TitleBlock
+            type="text"
+            value={formData.title}
+            onChange={handleFormChange}
+            name="title"
+          />
+        </div>
+        <div className="class2 box">
+          <TextAreaLabel>
+            Description
+            <TextArea
+              value={formData.description}
               onChange={handleFormChange}
-            />
-          </div>
-          <div className="bottom">
-            <TitleBlock
+              name="description"
+            ></TextArea>
+          </TextAreaLabel>
+        </div>
+        <div className="class4 box">
+          <Label>
+            Status
+            <Select>
+              {applicationStatuses.map((status) => (
+                <option key={status}>{status}</option>
+              ))}
+            </Select>
+          </Label>
+          <Label>
+            Link
+            <LinkInput
               type="text"
-              value={formData.title}
-              name="title"
+              value={formData.url}
               onChange={handleFormChange}
+              name="url"
             />
-            <CreatedTimeBlock>
-              <p>
-                Date Created: {new Date(formData.created).toLocaleDateString()}
-              </p>
-            </CreatedTimeBlock>
-            <ModifiedTimeBlock>
-              <p>
-                Last Modified {new Date(formData.modified).toLocaleDateString()}
-              </p>
-            </ModifiedTimeBlock>
-          </div>
-        </FormTop>
-        <FormBottom>
-          <Description>
-            <Label>
-              Description
-              <TextArea
-                value={formData.description}
-                name="description"
-                onChange={handleFormChange}
-              />
-            </Label>
-          </Description>
-        </FormBottom>
+          </Label>
+          <TimeBlock>
+            <p>
+              Data Created: {new Date(formData.created).toLocaleDateString()}
+            </p>
+            <p>Update On: {new Date(formData.modified).toLocaleDateString()}</p>
+          </TimeBlock>
+        </div>
       </Form>
     </AppViewBase>
   );

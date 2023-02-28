@@ -1,5 +1,5 @@
 import React from "react";
-import { application, applicationStatusType } from "../model";
+import { MainPageStates, application, applicationStatusType } from "../model";
 import { useState } from "react";
 import ApplicationView from "../Views/ApplicationView/ApplicationView";
 import { getApplicationColor } from "../../helper/functions";
@@ -18,23 +18,21 @@ import {
 
 interface Props {
   applicationInfo: application;
-  setIsInAppView: React.Dispatch<React.SetStateAction<boolean>>;
   fetchApplications: () => Promise<void>;
+  isInAppView: boolean;
+  setIsInAppView: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Application: React.FC<Props> = ({
   applicationInfo,
-  setIsInAppView,
   fetchApplications,
+  isInAppView,
+  setIsInAppView,
 }) => {
   const [applicationState, setApplicationState] = useState<boolean>(false);
   const [hoverState, setHoverState] = useState<boolean>(false);
-  const { isInAddView } = useOutletContext<{
-    applicationData: application[];
-    pathname: string;
-    isInAddView: boolean;
-    setIsInAddView: React.Dispatch<React.SetStateAction<boolean>>;
-  }>();
+
+  const { isInAddView } = useOutletContext<MainPageStates>();
 
   const handleHoverEnter = (): void => {
     setHoverState(true);
@@ -47,14 +45,10 @@ const Application: React.FC<Props> = ({
   return (
     <ApplicationBase
       onMouseEnter={() => {
-        if (!isInAddView) {
-          handleHoverEnter();
-        }
+        handleHoverEnter();
       }}
       onMouseLeave={() => {
-        if (!isInAddView) {
-          handleHoverExit();
-        }
+        handleHoverExit();
       }}
     >
       {applicationState ? (
@@ -80,11 +74,13 @@ const Application: React.FC<Props> = ({
         </ApplicationDescription>
       </ApplicationMain>
       <ApplicationActions>
-        {hoverState ? (
+        {hoverState && !isInAppView && !isInAddView ? (
           <>
             <EditButton
               applicationState={applicationState}
               setApplicationState={setApplicationState}
+              setIsInAppView={setIsInAppView}
+              isInAppView={isInAppView}
             />
             <DeleteButton
               id={applicationInfo.id}

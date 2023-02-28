@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
-interface State {
+interface Props {
   isInAddView: boolean;
 }
 
-export const MainPageBase = styled.div<State>`
+export const MainPageBase = styled.div<Props>`
   display: flex;
-  ${(props) => (props.isInAddView === false ? null : "")}
 `;
 
 export const MainSectionBase = styled.div`
