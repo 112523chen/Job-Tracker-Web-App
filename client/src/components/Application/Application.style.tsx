@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ApplicationBase = styled.div`
   background-color: #e1e1e1;
+  background-color: white;
   width: 70%;
   height: 189px;
   display: flex;
@@ -13,8 +14,8 @@ export const ApplicationBase = styled.div`
   box-shadow: rgb(71 89 107 / 10%) 0px 10px 5px;
 
   &:hover {
-    /* box-shadow: rgb(0 140 105) 5px 5px 0px; */
-    box-shadow: rgb(71 89 107 / 10%) 0px 13px 5px;
+    cursor: pointer;
+    box-shadow: rgb(71 89 107 / 10%) 0px 14px 5px;
   }
 `;
 
@@ -27,6 +28,7 @@ export const ApplicationSide = styled.div`
 export const ApplicationMain = styled.div`
   margin-left: 1.5rem;
   width: 80%;
+  color: #47596b;
 `;
 
 export const ApplicationRole = styled.p`
