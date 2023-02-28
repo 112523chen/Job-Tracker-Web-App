@@ -6,5 +6,10 @@ html {
 }
 body {
   margin: 0;
+  background-color: rgb(246, 249, 255);
+
+  /* @media (prefers-color-scheme: dark) {
+    background-color: black;
+  } */
 }
 `;
