@@ -10,5 +10,6 @@ export const DeleteButtonBase = styled.button`
   &:hover {
     box-shadow: rgb(0 0 0 / 25%) 0px 1px 4px;
     fill: rgb(214, 99, 92);
+    cursor: pointer;
   }
 `;

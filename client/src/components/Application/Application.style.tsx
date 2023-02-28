@@ -14,7 +14,6 @@ export const ApplicationBase = styled.div`
   box-shadow: rgb(71 89 107 / 10%) 0px 10px 5px;
 
   &:hover {
-    cursor: pointer;
     box-shadow: rgb(71 89 107 / 10%) 0px 14px 5px;
   }
 `;
