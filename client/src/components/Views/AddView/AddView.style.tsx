@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const AddViewBase = styled.div`
   position: fixed;
-  width: 70%;
-  height: 678px;
+  width: 40rem;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -11,28 +10,27 @@ export const AddViewBase = styled.div`
   background-color: #ececec;
   border-radius: 1rem;
   z-index: 3;
+  box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%),
+    0 9px 28px 8px rgb(0 0 0 / 5%);
+  background-color: #ffffff;
 `;
+
+export const H1 = styled.h1`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  margin-bottom: 0;
+  font-weight: normal;
+  color: #47596b;
+`;
+
 export const Form = styled.form`
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   height: 100%;
-`;
-
-export const ExitButton = styled.button`
-  position: absolute;
-  right: 4%;
-  top: 5%;
-  padding: 0px;
-  border: 0;
-  background-color: #ececec;
-  &:hover {
-    background-color: red;
-  }
-  svg {
-    display: flex;
-    justify-content: center;
-  }
+  flex-direction: column;
 `;
 
 export const FormCenter = styled.div`
@@ -40,32 +38,6 @@ export const FormCenter = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 80%;
-`;
-
-export const InputLabel = styled.label`
-  display: flex;
-  flex-direction: column;
-  font-size: 1.5rem;
-  width: 80%;
-  margin: 1rem 0rem;
-`;
-
-export const InputField = styled.input`
-  height: 3rem;
-  background-color: #d9d9d9;
-  border-radius: 0.625rem;
-  &::placeholder {
-    color: white;
-    opacity: 1;
-  }
-`;
-
-export const SubmitButton = styled.button`
-  width: 15rem;
-  height: 4.6875rem;
-  border: 3px solid;
-  border-radius: 1rem;
-  font-size: 1.5rem;
-  margin-top: 2rem;
+  /* margin: 5rem 0 0 0; */
+  width: fit-content;
 `;

@@ -1,15 +1,11 @@
 import React, { useState } from "react";
-
 import { addApplication } from "../../../helper/api/functions";
-import {
-  AddViewBase,
-  ExitButton,
-  Form,
-  FormCenter,
-  InputField,
-  InputLabel,
-  SubmitButton,
-} from "./AddView.style";
+import ExitButton from "../../FormParts/ExitButton/ExitButton";
+
+import { AddViewBase, Form, FormCenter, H1 } from "./AddView.style";
+import InputsContainer from "../../FormParts/InputContainer/InputsContainer";
+import { addViewFormData } from "../../model";
+import { SubmitButton } from "../../FormParts/SubmitButton/SubmitButton.style";
 
 interface Props {
   setIsInAddView: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,11 +13,10 @@ interface Props {
 }
 
 const AddView: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<addViewFormData>({
     title: "",
     company: "",
     url: "",
-    description: "",
   });
 
   const handleAddViewChange = () => {
@@ -30,7 +25,6 @@ const AddView: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
       title: "",
       company: "",
       url: "",
-      description: "",
     });
   };
 
@@ -47,6 +41,7 @@ const AddView: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
     event.preventDefault();
     let data = {
       ...formData,
+      description: "",
       status: "created",
     };
     let response = await addApplication(data);
@@ -59,70 +54,20 @@ const AddView: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
 
   return (
     <AddViewBase>
+      <H1>Add a New Job</H1>
       <Form onSubmit={handleFormSubmit}>
-        <ExitButton
-          onClick={(e) => {
-            e.preventDefault();
-            handleAddViewChange();
-          }}
-        >
-          <svg
-            width="48"
-            height="48"
-            viewBox="0 0 48 48"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12.8 38L10 35.2L21.2 24L10 12.8L12.8 10L24 21.2L35.2 10L38 12.8L26.8 24L38 35.2L35.2 38L24 26.8L12.8 38Z" />
-          </svg>
-        </ExitButton>
+        <ExitButton handleAddViewChange={handleAddViewChange} />
         <FormCenter>
-          <InputLabel>
-            Job Title
-            <InputField
-              type="text"
-              className="formInput"
-              placeholder=""
-              name="title"
-              onChange={handleFormChange}
-              value={formData.title}
+          {Object.keys(formData).map((key) => (
+            <InputsContainer
+              key={key}
+              formData={formData}
+              handleFormChange={handleFormChange}
+              inputName={key}
             />
-          </InputLabel>
-          <InputLabel>
-            Company
-            <InputField
-              type="text"
-              className="formInput"
-              placeholder=""
-              name="company"
-              onChange={handleFormChange}
-              value={formData.company}
-            />
-          </InputLabel>
-          <InputLabel>
-            Link
-            <InputField
-              type="text"
-              className="formInput"
-              placeholder=""
-              name="url"
-              onChange={handleFormChange}
-              value={formData.url}
-            />
-          </InputLabel>
-          <InputLabel>
-            Description
-            <InputField
-              type="text"
-              className="formInput"
-              placeholder=""
-              name="description"
-              onChange={handleFormChange}
-              value={formData.description}
-            />
-          </InputLabel>
-
-          <SubmitButton>Submit</SubmitButton>
+          ))}
         </FormCenter>
+        <SubmitButton type="submit">Submit</SubmitButton>
       </Form>
     </AddViewBase>
   );
