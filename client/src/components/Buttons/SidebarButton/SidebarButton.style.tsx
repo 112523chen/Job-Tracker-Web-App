@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+interface SidebarButtonBaseProps {
+  isNotAvailable: boolean;
+}
+
 export const StyledLink = styled(Link)`
   color: black;
   text-decoration: none;
 `;
 
-export const SidebarButtonBase = styled.div`
+export const SidebarButtonBase = styled.button<SidebarButtonBaseProps>`
   display: flex;
-  background-color: white;
-  background-color: #3a87e6;
   align-items: center;
   justify-content: center;
   width: 15rem;
@@ -18,15 +20,16 @@ export const SidebarButtonBase = styled.div`
   padding: 0.1rem 0.3rem;
   border-radius: 5px;
   border: 1px;
+  fill: white;
+  color: rgba(255, 255, 255, 0.65);
+  background-color: inherit;
   &:hover {
-    cursor: pointer;
-    box-shadow: #b3b3b3 1px 5px 0px;
-    transform: translateY(-5px);
+    cursor: ${(props) => (props.isNotAvailable ? "default" : "pointer")};
+    background-color: ${(props) =>
+      props.isNotAvailable ? "" : "rgba(0, 0, 0, 0.06)"};
+    color: ${(props) => (props.isNotAvailable ? "" : "white")};
   }
   &:active {
-    box-shadow: none;
-    transform: translateY(5px);
-    scale: 0.97;
   }
 `;
 
@@ -37,7 +40,7 @@ export const SidebarButtonIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  fill: white;
+  color: inherit;
 `;
 
 export const SidebarButtonText = styled.div`
@@ -46,7 +49,6 @@ export const SidebarButtonText = styled.div`
   font-weight: 700;
 
   p {
-    color: black;
-    color: white;
+    color: inherit;
   }
 `;

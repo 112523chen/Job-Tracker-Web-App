@@ -1,5 +1,5 @@
 import React from "react";
-import { isAvailable } from "../../../helper/functions";
+import { isNotAvailable } from "../../../helper/functions";
 
 import {
   SidebarButtonBase,
@@ -23,9 +23,12 @@ const SidebarButton: React.FC<Props> = ({
   isInAddView,
   isInAppView,
 }) => {
+  console.log("AVA", isNotAvailable(isInAddView, isInAppView));
   return (
-    <StyledLink to={isAvailable(isInAddView, isInAppView) ? "" : path}>
-      <SidebarButtonBase>
+    <StyledLink to={path}>
+      <SidebarButtonBase
+        isNotAvailable={isNotAvailable(isInAddView, isInAppView)}
+      >
         <SidebarButtonIcon>{icon}</SidebarButtonIcon>
         <SidebarButtonText>
           <p>{text}</p>

@@ -7,13 +7,18 @@ import { RecentSectionBase } from "./RecentSection.style";
 interface Props {
   setIsInAppView: React.Dispatch<React.SetStateAction<boolean>>;
   fetchApplications: (dataKind?: string) => Promise<void>;
+  isInAppView: boolean;
 }
 
 const RecentSection: React.FC<Props> = ({
   setIsInAppView,
   fetchApplications,
+  isInAppView,
 }) => {
   const { applicationData, isInAddView } = useOutletContext<MainPageStates>();
+
+  console.log("ADD", isInAddView);
+  console.log("APP", isInAppView);
 
   return (
     <RecentSectionBase>

@@ -73,6 +73,7 @@ const App = () => {
                 <RecentSection
                   fetchApplications={fetchApplications}
                   setIsInAppView={setIsInAppView}
+                  isInAppView={isInAppView}
                 />
               }
             />

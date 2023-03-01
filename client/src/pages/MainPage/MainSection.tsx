@@ -1,5 +1,5 @@
 import React from "react";
-import { MainPageStates, application } from "../../components/model";
+import { MainPageStates } from "../../components/model";
 import Application from "../../components/Application/Application";
 import { useOutletContext } from "react-router-dom";
 import AddButton from "../../components/Buttons/AddButton/AddButton";

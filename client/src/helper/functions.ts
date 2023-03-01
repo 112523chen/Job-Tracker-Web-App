@@ -73,7 +73,7 @@ export const getFormType = (formData: addViewFormData, i: string): string => {
   return result;
 };
 
-export const isAvailable = (
+export const isNotAvailable = (
   isInAddView: boolean,
   isInAppView: boolean
 ): boolean => {

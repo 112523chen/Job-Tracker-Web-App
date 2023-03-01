@@ -16,8 +16,6 @@ const AddButton: React.FC<Props> = ({
     setIsInAddView(isInAddView === false ? true : false);
   };
 
-  console.log(isInAppView);
-
   return (
     <AddButtonBase
       onClick={handleClick}
