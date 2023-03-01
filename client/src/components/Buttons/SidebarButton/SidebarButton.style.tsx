@@ -1,16 +1,27 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-interface SidebarButtonBaseProps {
+interface SidebarButtonProps {
   isNotAvailable: boolean;
 }
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(NavLink)<SidebarButtonProps>`
   color: black;
   text-decoration: none;
+
+  &:hover {
+    cursor: ${(props) => (props.isNotAvailable ? "default" : "pointer")};
+    background-color: ${(props) =>
+      props.isNotAvailable ? "" : "rgba(0, 0, 0, 0.06)"};
+    color: ${(props) => (props.isNotAvailable ? "" : "white")};
+  }
+
+  &.active {
+    background-color: #618cf7;
+  }
 `;
 
-export const SidebarButtonBase = styled.button<SidebarButtonBaseProps>`
+export const SidebarButtonBase = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,14 +34,6 @@ export const SidebarButtonBase = styled.button<SidebarButtonBaseProps>`
   fill: white;
   color: rgba(255, 255, 255, 0.65);
   background-color: inherit;
-  &:hover {
-    cursor: ${(props) => (props.isNotAvailable ? "default" : "pointer")};
-    background-color: ${(props) =>
-      props.isNotAvailable ? "" : "rgba(0, 0, 0, 0.06)"};
-    color: ${(props) => (props.isNotAvailable ? "" : "white")};
-  }
-  &:active {
-  }
 `;
 
 export const SidebarButtonIcon = styled.div`

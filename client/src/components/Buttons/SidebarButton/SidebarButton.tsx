@@ -23,12 +23,12 @@ const SidebarButton: React.FC<Props> = ({
   isInAddView,
   isInAppView,
 }) => {
-  console.log("AVA", isNotAvailable(isInAddView, isInAppView));
   return (
-    <StyledLink to={path}>
-      <SidebarButtonBase
-        isNotAvailable={isNotAvailable(isInAddView, isInAppView)}
-      >
+    <StyledLink
+      to={path}
+      isNotAvailable={isNotAvailable(isInAddView, isInAppView)}
+    >
+      <SidebarButtonBase>
         <SidebarButtonIcon>{icon}</SidebarButtonIcon>
         <SidebarButtonText>
           <p>{text}</p>
