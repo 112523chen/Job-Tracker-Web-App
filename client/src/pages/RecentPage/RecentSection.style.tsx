@@ -6,3 +6,9 @@ export const RecentSectionBase = styled.div`
   padding-top: 54px;
   width: 100%;
 `;
+
+export const RecentSectionTitle = styled.h1`
+  color: #47596b;
+  text-align: center;
+  width: 70%;
+`;
