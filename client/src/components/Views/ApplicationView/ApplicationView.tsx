@@ -103,7 +103,11 @@ const ApplicationView: React.FC<Props> = ({
         <div className="class4 box">
           <Label>
             Status
-            <Select>
+            <Select
+              value={formData.status}
+              onChange={handleFormChange}
+              name="status"
+            >
               {applicationStatuses.map((status) => (
                 <option key={status}>{status}</option>
               ))}

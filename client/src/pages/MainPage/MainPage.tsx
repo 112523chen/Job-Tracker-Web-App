@@ -10,6 +10,7 @@ interface Props {
   isInAddView: boolean;
   setIsInAddView: React.Dispatch<React.SetStateAction<boolean>>;
   setIsInRecentView: React.Dispatch<React.SetStateAction<boolean>>;
+  isInAppView: boolean;
 }
 
 const MainPage: React.FC<Props> = ({
@@ -17,6 +18,7 @@ const MainPage: React.FC<Props> = ({
   isInAddView,
   setIsInAddView,
   setIsInRecentView,
+  isInAppView,
 }) => {
   let { pathname } = useLocation();
 
@@ -26,7 +28,7 @@ const MainPage: React.FC<Props> = ({
 
   return (
     <MainPageBase isInAddView={isInAddView}>
-      <Sidebar isInAddView={isInAddView} />
+      <Sidebar isInAddView={isInAddView} isInAppView={isInAppView} />
       <Outlet
         context={{ applicationData, pathname, isInAddView, setIsInAddView }}
       />

@@ -7,9 +7,10 @@ import { sidebarData } from "../../assets/data";
 
 interface Props {
   isInAddView: boolean;
+  isInAppView: boolean;
 }
 
-const Sidebar: React.FC<Props> = ({ isInAddView }) => {
+const Sidebar: React.FC<Props> = ({ isInAddView, isInAppView }) => {
   return (
     <SideBarBase>
       <Main>
@@ -19,12 +20,14 @@ const Sidebar: React.FC<Props> = ({ isInAddView }) => {
           text={sidebarData.recent.text}
           path={sidebarData.recent.path}
           isInAddView={isInAddView}
+          isInAppView={isInAppView}
         />
         <SidebarButton
           icon={sidebarData.data.icon}
           text={sidebarData.data.text}
           path={sidebarData.data.path}
           isInAddView={isInAddView}
+          isInAppView={isInAppView}
         />
       </Main>
     </SideBarBase>

@@ -16,8 +16,14 @@ const AddButton: React.FC<Props> = ({
     setIsInAddView(isInAddView === false ? true : false);
   };
 
+  console.log(isInAppView);
+
   return (
-    <AddButtonBase onClick={handleClick} disabled={isInAppView}>
+    <AddButtonBase
+      onClick={handleClick}
+      disabled={isInAppView}
+      isInAppView={isInAppView}
+    >
       <svg
         width="30"
         height="30"

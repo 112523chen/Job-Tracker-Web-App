@@ -53,6 +53,7 @@ const App = () => {
                 setIsInAddView={setIsInAddView}
                 isInAddView={isInAddView}
                 setIsInRecentView={setIsInRecentView}
+                isInAppView={isInAppView}
               />
             }
           >

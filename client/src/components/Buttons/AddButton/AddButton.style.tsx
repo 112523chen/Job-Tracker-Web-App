@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const AddButtonBase = styled.button`
+interface AddButtonProps {
+  isInAppView: boolean;
+}
+
+export const AddButtonBase = styled.button<AddButtonProps>`
   background-color: #ffffff;
   box-shadow: 0 10px 0 rgb(0 0 0 / 2%);
   border-color: #d9d9d9;
@@ -10,12 +14,12 @@ export const AddButtonBase = styled.button`
   margin: 3rem 0;
 
   &:hover {
-    cursor: pointer;
-    fill: #4096ff;
-    border-color: #4096ff;
+    cursor: ${(props) => (props.isInAppView ? "default" : "pointer")};
+    fill: ${(props) => (props.isInAppView ? "" : "#4096ff")};
+    border-color: ${(props) => (props.isInAppView ? "" : "#4096ff")};
   }
   &:active {
-    box-shadow: none;
-    transform: translateY(5px);
+    box-shadow: ${(props) => (props.isInAppView ? "" : "none")};
+    transform: ${(props) => (props.isInAppView ? "" : "translateY(5px)")};
   }
 `;
