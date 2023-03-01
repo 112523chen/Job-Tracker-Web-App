@@ -1,3 +1,7 @@
+/**
+ * Types of application status in database
+ * @type {string}
+ */
 export type applicationStatusType =
   | "Created"
   | "Applied"
@@ -6,6 +10,10 @@ export type applicationStatusType =
   | "Final Round"
   | "Reject";
 
+/**
+ * Types of application status in views
+ * @type {string[]}
+ */
 export const applicationStatuses: string[] = [
   "Created",
   "Applied",

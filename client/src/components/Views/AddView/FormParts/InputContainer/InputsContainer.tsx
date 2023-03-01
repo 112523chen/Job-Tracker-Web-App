@@ -1,7 +1,7 @@
 import React from "react";
 import { InputContainer } from "./InputContainers.style";
 import { addViewFormData } from "../../../../model";
-import { getFormType, getLabel } from "../../../../../helper/functions";
+import { getFormValue, getLabel } from "../../../../../helper/functions";
 
 interface Props {
   inputName: string;
@@ -21,7 +21,7 @@ const InputsContainer: React.FC<Props> = ({
         placeholder=""
         name={inputName}
         onChange={handleFormChange}
-        value={getFormType(formData, inputName)}
+        value={getFormValue(formData, inputName)}
         required={true}
       />
       <span className="highlight"></span>

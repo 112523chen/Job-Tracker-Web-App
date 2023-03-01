@@ -1,5 +1,10 @@
 import { addViewFormData, applicationStatusType } from "../components/model";
 
+/**
+ * Returns the color code based application status within an application
+ * @param status - application status
+ * @returns the color of color code based on application status
+ */
 export const getApplicationColor = (status: applicationStatusType): string => {
   let color: string;
   switch (status) {
@@ -28,9 +33,14 @@ export const getApplicationColor = (status: applicationStatusType): string => {
   return color;
 };
 
-export const getLabel = (i: string): string => {
+/**
+ * Returns the text for the label based on an attribute fromData
+ * @param inputName - an attribute from formData
+ * @returns the text for the label for the InputContainer component
+ */
+export const getLabel = (inputName: string): string => {
   let result: string;
-  switch (i) {
+  switch (inputName) {
     case "title":
       result = "Job Title";
       break;
@@ -51,9 +61,18 @@ export const getLabel = (i: string): string => {
   return result;
 };
 
-export const getFormType = (formData: addViewFormData, i: string): string => {
+/**
+ * Returns the formData of certain attribute based on that attribute
+ * @param formData - an object that contains from object
+ * @param inputName - an attribute from formData
+ * @returns the value from formData
+ */
+export const getFormValue = (
+  formData: addViewFormData,
+  inputName: string
+): string => {
   let result: string;
-  switch (i) {
+  switch (inputName) {
     case "title":
       result = formData.title;
       break;
@@ -73,6 +92,12 @@ export const getFormType = (formData: addViewFormData, i: string): string => {
   return result;
 };
 
+/**
+ * Returns a boolean for if app is in any view that isn't Add view or Application view
+ * @param isInAddView - boolean for if app is in add view
+ * @param isInAppView - boolean for if app is in application view
+ * @returns boolean for if app is in any view
+ */
 export const isNotAvailable = (
   isInAddView: boolean,
   isInAppView: boolean
