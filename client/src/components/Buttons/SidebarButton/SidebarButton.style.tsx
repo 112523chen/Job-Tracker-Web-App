@@ -10,10 +10,10 @@ export const StyledLink = styled(NavLink)<SidebarButtonProps>`
   text-decoration: none;
 
   &:hover {
-    cursor: ${(props) => (props.isNotAvailable ? "default" : "pointer")};
-    background-color: ${(props) =>
-      props.isNotAvailable ? "" : "rgba(0, 0, 0, 0.06)"};
-    color: ${(props) => (props.isNotAvailable ? "" : "white")};
+    cursor: ${({ isNotAvailable }) => (isNotAvailable ? "default" : "pointer")};
+    background-color: ${(isNotAvailable) =>
+      isNotAvailable ? "" : "rgba(0, 0, 0, 0.06)"};
+    color: ${(isNotAvailable) => (isNotAvailable ? "" : "white")};
   }
 
   &.active {
