@@ -3,7 +3,7 @@ import { getBarChartData } from "../../helper/api/functions";
 import { useState, useEffect } from "react";
 import { barChartDataType } from "../../components/model";
 import BarGraph from "../../components/Graphs/BarGraph/BarGraph";
-import { AnalyticsSectionBase } from "./AnalyticsPage.style";
+import { AnalyticsSectionBase } from "./AnalyticsSection.style";
 
 interface Props {}
 
