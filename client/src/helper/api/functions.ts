@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   application,
   barChartDataType,
@@ -119,7 +120,6 @@ export const updateApplication = async (
  * @returns a promise for the data from database to fill in a bar chart
  */
 export const getBarChartData = async (): Promise<barChartDataType[]> => {
-  const response = await fetch("http://localhost:3000/barChartData");
-  let data = (await response.json()) as barChartDataType[];
-  return data;
+  const response = await axios.get("http://localhost:3000/barChartData");
+  return response.data;
 };

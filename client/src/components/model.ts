@@ -56,6 +56,6 @@ export interface addViewFormData {
 }
 
 export interface barChartDataType {
-  status: string;
+  name: string;
   count: string;
 }
