@@ -13,6 +13,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "16.x"
+      - name: "Install"
+        working-directory: ./client
+        run: | 
+          ls 
       - name: "Install Dependencies"
         working-directory: ./client
         run: | 
