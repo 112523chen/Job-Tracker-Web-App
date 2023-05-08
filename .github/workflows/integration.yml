@@ -27,11 +27,11 @@ jobs:
         
       - name: "Run Client Tests"
         working-directory: ./client
-        run: npm test
+        run: npm run test
       
       - name: "Run Server Tests"
         working-directory: ./server
-        run: npm test
+        run: npm run test
         
       - name: "Run Client Build"
         working-directory: ./client
