@@ -20,6 +20,14 @@ jobs:
       - name: "Install Server Dependencies"
         working-directory: ./server
         run: npm ci
+      
+      - name: "Run Client Build"
+        working-directory: ./client
+        run: npm run build
+      
+      - name: "Run Server Build"
+        working-directory: ./server
+        run: npm run build
         
       - name: "Run Client Tests"
         working-directory: ./client
@@ -28,12 +36,3 @@ jobs:
       - name: "Run Server Tests"
         working-directory: ./server
         run: npm run test
-        
-      - name: "Run Client Build"
-        working-directory: ./client
-        run: npm run build
-      
-      - name: "Run Server Build"
-        working-directory: ./server
-        run: npm run build
-      
