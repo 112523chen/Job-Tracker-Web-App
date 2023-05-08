@@ -23,7 +23,7 @@ jobs:
       
       - name: "Start Server"
         working-directory: ./server
-        run: npm run start
+        run: npm run dev
         
       - name: "Run Client Tests"
         working-directory: ./client
