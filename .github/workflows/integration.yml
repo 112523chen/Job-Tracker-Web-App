@@ -14,8 +14,10 @@ jobs:
         with:
           node-version: "16.x"
       - name: "Install Dependencies"
-        run: npm install -y && npm ci  
-      - name: "Run Tests"
+        run: cd ./client && npm ci
+      - name: "Run Client Tests"
         run: npm test
-
-      - run: npm run build
+      - name: "Run Client Build"
+        run: npm run build
+      - run: ls 
+      
