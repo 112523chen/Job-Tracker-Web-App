@@ -13,10 +13,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "16.x"
-      - name: "Install"
-        working-directory: ./client
-        run: ls 
-        
       - name: "Install Client Dependencies"
         working-directory: ./client
         run: npm ci
@@ -24,6 +20,10 @@ jobs:
       - name: "Install Server Dependencies"
         working-directory: ./server
         run: npm ci
+      
+      - name: "Start Server"
+        working-directory: ./server
+        run: npm run start
         
       - name: "Run Client Tests"
         working-directory: ./client
