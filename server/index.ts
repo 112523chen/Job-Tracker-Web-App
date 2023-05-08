@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config({ path: "../.env" });
 
-const app = express();
+export const app = express();
 const port = process.env.PORT;
 const db = require("./db/index");
 
@@ -16,14 +16,14 @@ app.use(
 );
 
 app.get("/", (request: Request, response: Response) => {
-  response.json({ info: "HI" });
+  response.status(200).json({ info: "HI" });
 });
 
 // Get all applications in database
 app.get("/applications", db.getAllApplications);
 
 // Get all applications in database by
-app.get("/application/sorted/modified/DESC", db.getAllApplicationsByModified);
+app.get("/applications/sorted/:method/:type", db.getAllApplicationsByFilter);
 
 // Get application by application id
 app.get("/applications/:id", db.getApplicationByID);
@@ -40,6 +40,6 @@ app.delete("/applications/:id", db.deleteApplication);
 // Get data for bar chart
 app.get("/barChartData", db.getBarChartData);
 
-app.listen(port, () => {
-  console.log(`App running on port ${port}.`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, () => console.log(`App running on port ${port}`));
+}

@@ -70,7 +70,7 @@ const Application: React.FC<Props> = ({
         <ApplicationRole>{applicationInfo.title}</ApplicationRole>
         <ApplicationCompany>{applicationInfo.company}</ApplicationCompany>
         <ApplicationDescription>
-          {applicationInfo.description}
+          {/* {applicationInfo.description} */}
         </ApplicationDescription>
       </ApplicationMain>
       <ApplicationActions>

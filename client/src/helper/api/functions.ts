@@ -6,11 +6,12 @@ import {
 } from "../../components/model";
 
 /**
- *
  * @returns all application data from database
  */
 export const getApplicationData = async (): Promise<application[]> => {
-  const response = await fetch("http://localhost:3000/applications");
+  const response = await fetch(
+    "http://localhost:3000/applications/sorted/created/DESC"
+  );
   let applications = (await response.json()) as application[];
   return applications;
 };
@@ -23,7 +24,7 @@ export const getApplicationDataByModifiedDate = async (): Promise<
   application[]
 > => {
   const response = await fetch(
-    "http://localhost:3000/application/sorted/modified/DESC"
+    "http://localhost:3000/applications/sorted/modified/DESC"
   );
   let applications = (await response.json()) as application[];
   return applications;
