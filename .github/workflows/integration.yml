@@ -14,8 +14,8 @@ jobs:
         with:
           node-version: "16.x"
       - name: "Install Dependencies"
-        run: npm ci
         working-directory: ./client
+        run: npm ci
       - name: "Run Client Tests"
         run: npm test
       - name: "Run Client Build"
