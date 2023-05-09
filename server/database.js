@@ -22,3 +22,8 @@ pgclient.query(table, (error, response) => {
 pgclient.query(data, (error, response) => {
   if (error) throw error;
 });
+
+pgclient.query("SELECT * FROM applications", (error, response) => {
+  if (error) throw error;
+  console.log(response.rows);
+});
