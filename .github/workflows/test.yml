@@ -30,25 +30,25 @@ jobs:
         run: ls
           
       - name: Install Client Dependencies
-        working-directory: ./client
+        working-directory: /client
         run: npm ci
       
       - name: Install Server Dependencies
-        working-directory: ./server
+        working-directory: /server
         run: npm ci
       
       - name: Connect to PostgreSQL
-        working-directory: ./server
+        working-directory: /server
         run: node database.js
         env:
           POSTGRES_HOST: localhost
           POSTGRES_PORT: 5432
         
       - name: Run Client Tests
-        working-directory: ./client
+        working-directory: /client
         run: npm run test
       
       - name: Run Server Tests
-        working-directory: ./server
+        working-directory: /server
         run: npm run test
       
