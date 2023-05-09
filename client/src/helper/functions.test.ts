@@ -54,3 +54,9 @@ describe("getFormValue", () => {
     expect(getFormValue(formData, "")).toEqual("");
   });
 });
+
+describe("getApplicationColor Tests", () => {
+  test("should return grey", () => {
+    expect(getApplicationColor("Created")).toBe("grey");
+  });
+});
