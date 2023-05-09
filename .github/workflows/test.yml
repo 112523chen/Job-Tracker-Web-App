@@ -21,13 +21,16 @@ jobs:
           - 5432:5432
           
     steps:      
+      
+      - uses: actions/checkout@v2
+      
       - name: Install Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
           
       - name: Install Client Dependencies
-        working-directory: ~/client
+        working-directory: ./client
         run: npm ci
       
       - name: Install Server Dependencies
