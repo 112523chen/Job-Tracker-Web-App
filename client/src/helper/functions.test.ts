@@ -1,3 +1,4 @@
+import { addViewFormData } from "../components/model";
 import {
   isNotAvailable,
   getLabel,
@@ -28,5 +29,28 @@ describe("getLabel Tests", () => {
 
   test("should return Empty", () => {
     expect(getLabel("Empty")).toBe("");
+  });
+});
+
+describe("getFormValue", () => {
+  const formData: addViewFormData = {
+    title: "title",
+    company: "company",
+    url: "url",
+  };
+  test("should return title", () => {
+    expect(getFormValue(formData, "title")).toBe(formData.title);
+  });
+
+  test("should return company", () => {
+    expect(getFormValue(formData, "company")).toEqual(formData.company);
+  });
+
+  test("should return url", () => {
+    expect(getFormValue(formData, "url")).toEqual(formData.url);
+  });
+
+  test("should return Empty", () => {
+    expect(getFormValue(formData, "")).toEqual("");
   });
 });
