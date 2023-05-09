@@ -35,7 +35,10 @@ const ApplicationView: React.FC<Props> = ({
   };
 
   const handleFormChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+      | React.ChangeEvent<HTMLSelectElement>
   ): void => {
     setFormData((prevFormData) => {
       return {
