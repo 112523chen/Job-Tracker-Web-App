@@ -27,7 +27,7 @@ jobs:
           node-version: 18
           
       - name: Install Client Dependencies
-        working-directory: ./client
+        working-directory: ~/client
         run: npm ci
       
       - name: Install Server Dependencies
