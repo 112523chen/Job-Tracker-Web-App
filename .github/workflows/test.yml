@@ -22,6 +22,10 @@ jobs:
           
     steps:      
       
+      - run: |
+           psql
+           CREATE DATABASE jobapp;
+      
       - uses: actions/checkout@v2
       
       - name: Install Node
