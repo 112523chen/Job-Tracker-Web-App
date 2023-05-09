@@ -59,4 +59,7 @@ describe("getApplicationColor Tests", () => {
   test("should return grey", () => {
     expect(getApplicationColor("Created")).toBe("grey");
   });
+  test("should return silver", () => {
+    expect(getApplicationColor("Applied")).toBe("silver");
+  });
 });
