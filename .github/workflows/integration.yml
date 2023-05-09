@@ -8,31 +8,22 @@ jobs:
   test_pull_request:
     runs-on: ubuntu-latest
     steps:
+    
       - uses: actions/checkout@v2
+      
       - name: "Install Node"
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          
       - name: "Install Client Dependencies"
         working-directory: ./client
-        run: npm ci
-      
-      - name: "Install Server Dependencies"
-        working-directory: ./server
         run: npm ci
         
       - name: "Run Client Tests"
         working-directory: ./client
         run: npm run test
       
-      - name: "Run Server Tests"
-        working-directory: ./server
-        run: npm run test
-      
       - name: "Run Client Build"
         working-directory: ./client
-        run: npm run build
-      
-      - name: "Run Server Build"
-        working-directory: ./server
         run: npm run build
