@@ -2,7 +2,7 @@ import React from "react";
 import { MainPageStates, application, applicationStatusType } from "../model";
 import { useState } from "react";
 import ApplicationView from "../Views/ApplicationView/ApplicationView";
-import { getApplicationColor } from "../../helper/functions";
+import { getApplicationColor } from "../../helper/main/functions";
 import DeleteButton from "../Buttons/DeleteButton/DeleteButton";
 import EditButton from "../Buttons/EditButton/EditButton";
 import { useOutletContext } from "react-router-dom";

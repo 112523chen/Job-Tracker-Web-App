@@ -1,5 +1,5 @@
 import React from "react";
-import { isNotAvailable } from "../../../helper/functions";
+import { isNotAvailable } from "../../../helper/main/functions";
 
 import {
   SidebarButtonBase,
