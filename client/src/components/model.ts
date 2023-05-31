@@ -8,7 +8,8 @@ export type applicationStatusType =
   | "Assessment"
   | "Interview"
   | "Final Round"
-  | "Reject";
+  | "Reject"
+  | "Offer";
 
 /**
  * Types of application status in views
@@ -21,6 +22,7 @@ export const applicationStatuses: string[] = [
   "Interview",
   "Final Round",
   "Reject",
+  "Offer",
 ];
 
 export interface application {
