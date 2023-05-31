@@ -6,12 +6,23 @@ import { BarGraphBase } from "./BarGraph.style";
 
 interface Props {
   barChartData: barChartDataType[];
+  xAxisValueName: string;
+  xAxisLabel: string;
+  yAxisLabel: string;
+  title: string;
 }
 
-const BarGraph: React.FC<Props> = ({ barChartData }) => {
+const BarGraph: React.FC<Props> = ({
+  barChartData,
+  xAxisValueName,
+  xAxisLabel,
+  yAxisLabel,
+  title,
+}) => {
+  console.log(barChartData);
   return (
     <BarGraphBase>
-      <h3 className="chart-title">Distribution of Status</h3>
+      <h3 className="chart-title">{title}</h3>
       <BarChart
         width={700}
         height={300}
@@ -25,16 +36,18 @@ const BarGraph: React.FC<Props> = ({ barChartData }) => {
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis
-          dataKey="status"
-          label={{ value: "Status", position: "insideBottom", offset: -5 }}
+          height={35}
+          dataKey={xAxisValueName}
+          label={{ value: xAxisLabel, position: "insideBottom", offset: -5 }}
         />
         <YAxis
+          width={90}
           label={{
-            value: "# of Roles",
+            value: yAxisLabel,
             angle: -90,
             position: "insideCenter",
           }}
-          tickCount={barChartData.length}
+          domain={[0, barChartData.length]}
         />
         <Tooltip />
         {/* <Legend wrapperStyle={{ position: "relative" }} /> */}
