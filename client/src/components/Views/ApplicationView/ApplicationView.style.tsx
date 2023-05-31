@@ -61,7 +61,7 @@ export const CompanyBlock = styled.input`
 export const TitleBlock = styled.input`
   font-weight: 500;
   font-size: 2rem;
-  width: fit-content;
+  width: fit-content + 5%;
   border: none;
   color: #47596b;
 `;
