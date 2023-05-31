@@ -4,6 +4,7 @@ import {
   barChartDataType,
   newFormData,
 } from "../../components/model";
+import { TimeFrame } from "../models";
 
 /**
  * @returns all application data from database
@@ -121,6 +122,28 @@ export const updateApplication = async (
  * @returns a promise for the data from database to fill in a bar chart
  */
 export const getBarChartData = async (): Promise<barChartDataType[]> => {
-  const response = await axios.get("http://localhost:3000/barChartData");
+  const response = await axios.get("http://localhost:3000/barChartData/roles");
+  return response.data;
+};
+
+/**
+ * @returns a promise for the data from database to fill in a bar chart given a time frame
+ */
+export const getBarChartDataByTimeFrame = async (
+  frame: TimeFrame
+): Promise<barChartDataType[]> => {
+  const response = await axios.get(
+    `http://localhost:3000/barChartData/roles/${frame}`
+  );
+  return response.data;
+};
+
+/**
+ * @returns a promise for the data from database to fill in bar chart about titles given a time frame
+ */
+export const getBarChartTitleData = async (limit: number) => {
+  const response = await axios.get(
+    `http://localhost:3000/barChartData/title/${limit}`
+  );
   return response.data;
 };
