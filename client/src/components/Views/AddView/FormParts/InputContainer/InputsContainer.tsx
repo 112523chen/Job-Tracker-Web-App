@@ -1,7 +1,7 @@
 import React from "react";
 import { InputContainer } from "./InputContainers.style";
 import { addViewFormData } from "../../../../model";
-import { getFormValue, getLabel } from "../../../../../helper/functions";
+import { getFormValue, getLabel } from "../../../../../helper/main/functions";
 
 interface Props {
   inputName: string;

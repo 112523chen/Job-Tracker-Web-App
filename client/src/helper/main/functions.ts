@@ -1,4 +1,4 @@
-import { addViewFormData, applicationStatusType } from "../components/model";
+import { addViewFormData, applicationStatusType } from "../../components/model";
 
 /**
  * Returns the color code based application status within an application
@@ -26,8 +26,8 @@ export const getApplicationColor = (status: applicationStatusType): string => {
     case "Reject":
       color = "red";
       break;
-    default:
-      color = "black";
+    case "Offer":
+      color = "green";
       break;
   }
   return color;

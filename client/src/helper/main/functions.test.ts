@@ -1,4 +1,4 @@
-import { addViewFormData } from "../components/model";
+import { addViewFormData } from "../../components/model";
 import {
   isNotAvailable,
   getLabel,
@@ -64,5 +64,17 @@ describe("getApplicationColor Tests", () => {
   });
   test("should return yellow", () => {
     expect(getApplicationColor("Assessment")).toBe("yellow");
+  });
+  test("should return orange", () => {
+    expect(getApplicationColor("Interview")).toBe("orange");
+  });
+  test("should return blue", () => {
+    expect(getApplicationColor("Final Round")).toBe("blue");
+  });
+  test("should return red", () => {
+    expect(getApplicationColor("Reject")).toBe("red");
+  });
+  test("should return green", () => {
+    expect(getApplicationColor("Offer")).toBe("green");
   });
 });
