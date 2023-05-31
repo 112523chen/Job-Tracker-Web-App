@@ -1,5 +1,7 @@
 import { Pool } from "pg";
 import { Request, Response } from "express";
+import { TimeFrame } from "../helper/models";
+import { getDays } from "../helper/functions";
 
 const pool = new Pool({
   user: process.env.USER,
@@ -97,10 +99,44 @@ const deleteApplication = async (request: Request, response: Response) => {
 };
 
 // Get data for bar chart
-const getBarChartData = async (request: Request, response: Response) => {
+const getBarChartRoleData = async (request: Request, response: Response) => {
   try {
     const results = await pool.query(
-      "SELECT status, COUNT(status) FROM applications GROUP BY status"
+      "SELECT status, COUNT(status) FROM applications WHERE created > CURRENT_DATE - 7 AND status != 'created' GROUP BY status"
+    );
+    response.status(201).json(results.rows);
+  } catch (error) {
+    response.status(404).json(error);
+  }
+};
+
+// Get data for bar chart by window
+const getBarChartRoleDataByWindow = async (
+  request: Request,
+  response: Response
+) => {
+  const timeFrame: string = getDays(
+    (request.params.frame as TimeFrame) || "week"
+  );
+
+  try {
+    const results = await pool.query(
+      `SELECT status, COUNT(status) FROM applications WHERE created > CURRENT_DATE - ${timeFrame} AND status != 'created' GROUP BY status`
+    );
+    response.status(201).json(results.rows);
+  } catch (error) {
+    response.status(404).json(error);
+  }
+};
+
+// Get data for bar chart about titles
+const getBarChartTitleData = async (request: Request, response: Response) => {
+  const limit = request.params.limit;
+
+  try {
+    const results = await pool.query(
+      `SELECT title, COUNT(title) FROM applications GROUP BY title ORDER BY title DESC LIMIT $1`,
+      [limit]
     );
     response.status(201).json(results.rows);
   } catch (error) {
@@ -115,5 +151,7 @@ module.exports = {
   updateApplication,
   createApplication,
   deleteApplication,
-  getBarChartData,
+  getBarChartRoleData,
+  getBarChartRoleDataByWindow,
+  getBarChartTitleData,
 };

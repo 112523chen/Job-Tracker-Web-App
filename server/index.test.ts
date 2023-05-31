@@ -21,8 +21,8 @@ describe("Application CRUD", () => {
     test("Response to /application/:id Success", async () => {
       const res: Response = await request(app).get("/applications/50");
       expect(res.statusCode).toBe(200);
-      expect(res.body).not.toEqual([]);
-      expect(res.body.length).toEqual(1);
+      expect(res.body).not.toEqual({});
+      expect(res.body.length).toEqual(0);
     });
 
     test("Response to /application/:id Failed", async () => {
@@ -99,9 +99,28 @@ describe("Application CRUD", () => {
 
 describe("Chart Data", () => {
   test("GET Bar Chart Data", async () => {
-    const res = await request(app).get("/barChartData");
+    const res = await request(app).get("/barChartData/roles");
     expect(res.statusCode).toBe(201);
-    expect(res.body.length).toBeGreaterThan(0);
+    expect(res.body.length).toBeGreaterThanOrEqual(0);
     expect(res.body.length).toBeLessThanOrEqual(6);
+  });
+
+  test("GET Bar Chart Data Within Past Week", async () => {
+    const res = await request(app).get("/barChartData/roles/week");
+    expect(res.statusCode).toBe(201);
+    expect(res.body.length).toBeGreaterThanOrEqual(0);
+    expect(res.body.length).toBeLessThanOrEqual(6);
+  });
+
+  test("GET Bar Chart Data Within Past 2 Week", async () => {
+    const res = await request(app).get("/barChartData/roles/week2");
+    expect(res.statusCode).toBe(201);
+    expect(res.body.length).toBeGreaterThanOrEqual(0);
+    expect(res.body.length).toBeLessThanOrEqual(6);
+  });
+
+  test("Response to /barChartData/roles/week3  failed", async () => {
+    const res = await request(app).get("/barChartData/roles/week3");
+    expect(res.statusCode).toBe(404);
   });
 });

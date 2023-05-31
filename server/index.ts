@@ -22,7 +22,7 @@ app.get("/", (request: Request, response: Response) => {
 // Get all applications in database
 app.get("/applications", db.getAllApplications);
 
-// Get all applications in database by
+// Get all applications in database sorted by time
 app.get("/applications/sorted/:method/:type", db.getAllApplicationsByFilter);
 
 // Get application by application id
@@ -38,7 +38,13 @@ app.put("/applications/:id", db.updateApplication);
 app.delete("/applications/:id", db.deleteApplication);
 
 // Get data for bar chart
-app.get("/barChartData", db.getBarChartData);
+app.get("/barChartData/roles", db.getBarChartRoleData);
+
+// Get data for bar chart by time frame
+app.get("/barChartData/roles/:frame", db.getBarChartRoleDataByWindow);
+
+// Get data for bar chart for top X roles
+app.get("/barChartData/title/:limit", db.getBarChartTitleData);
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(port, () => console.log(`App running on port ${port}`));
