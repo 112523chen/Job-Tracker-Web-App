@@ -3,26 +3,32 @@
  * @type {string}
  */
 export type applicationStatusType =
-  | "Created"
-  | "Applied"
-  | "Assessment"
-  | "Interview"
-  | "Final Round"
-  | "Reject"
-  | "Offer";
+  | "created"
+  | "applied"
+  | "assessment"
+  | "interview"
+  | "final_round"
+  | "reject"
+  | "offer";
+
+/**
+ * Types of application statuses for filtering application
+ * @type {string}
+ */
+export type applicationStatusFilterType = applicationStatusType | "all";
 
 /**
  * Types of application status in views
  * @type {string[]}
  */
 export const applicationStatuses: string[] = [
-  "Created",
-  "Applied",
-  "Assessment",
-  "Interview",
-  "Final Round",
-  "Reject",
-  "Offer",
+  "created",
+  "applied",
+  "assessment",
+  "interview",
+  "final_round",
+  "reject",
+  "offer",
 ];
 
 export interface application {
@@ -41,6 +47,9 @@ export interface MainPageStates {
   pathname: string;
   isInAddView: boolean;
   setIsInAddView: React.Dispatch<React.SetStateAction<boolean>>;
+  updateCurrentStatusFilter: (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => void;
 }
 
 export interface newFormData {

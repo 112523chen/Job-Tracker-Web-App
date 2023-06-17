@@ -1,18 +1,29 @@
 import axios from "axios";
 import {
   application,
+  applicationStatusType,
   barChartDataType,
   newFormData,
 } from "../../components/model";
 import { TimeFrame } from "../models";
+import { applicationStatusFilterType } from "../../components/model";
 
 /**
  * @returns all application data from database
  */
-export const getApplicationData = async (): Promise<application[]> => {
-  const response = await fetch(
-    "http://localhost:3000/applications/sorted/created/DESC"
-  );
+export const getApplicationData = async (
+  status: applicationStatusFilterType
+): Promise<application[]> => {
+  let url: string;
+
+  if (status == "all") {
+    url = "http://localhost:3000/applications/sorted/created/DESC";
+  } else {
+    url = `http://localhost:3000/applications/sorted/created/DESC/${status}`;
+  }
+
+  const response = await fetch(url);
+
   let applications = (await response.json()) as application[];
   return applications;
 };
@@ -21,12 +32,18 @@ export const getApplicationData = async (): Promise<application[]> => {
  *
  * @returns all application data from database sorted by when application was last modified in descending order
  */
-export const getApplicationDataByModifiedDate = async (): Promise<
-  application[]
-> => {
-  const response = await fetch(
-    "http://localhost:3000/applications/sorted/modified/DESC"
-  );
+export const getApplicationDataByModifiedDate = async (
+  status: applicationStatusFilterType
+): Promise<application[]> => {
+  let url: string;
+
+  if (status == "all") {
+    url = "http://localhost:3000/applications/sorted/created/DESC";
+  } else {
+    url = `http://localhost:3000/applications/sorted/created/DESC/${status}`;
+  }
+
+  const response = await fetch(url);
   let applications = (await response.json()) as application[];
   return applications;
 };
