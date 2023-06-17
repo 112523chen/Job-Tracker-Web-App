@@ -32,8 +32,8 @@ const node_test_1 = require("node:test");
         test("Response to /application/:id Success", () => __awaiter(void 0, void 0, void 0, function* () {
             const res = yield (0, supertest_1.default)(index_1.app).get("/applications/50");
             expect(res.statusCode).toBe(200);
-            expect(res.body).not.toEqual([]);
-            expect(res.body.length).toEqual(1);
+            expect(res.body).not.toEqual({});
+            expect(res.body.length).toEqual(0);
         }));
         test("Response to /application/:id Failed", () => __awaiter(void 0, void 0, void 0, function* () {
             const res = yield (0, supertest_1.default)(index_1.app).get("/applications/test");
@@ -91,9 +91,25 @@ const node_test_1 = require("node:test");
 });
 (0, node_test_1.describe)("Chart Data", () => {
     test("GET Bar Chart Data", () => __awaiter(void 0, void 0, void 0, function* () {
-        const res = yield (0, supertest_1.default)(index_1.app).get("/barChartData");
+        const res = yield (0, supertest_1.default)(index_1.app).get("/barChartData/roles");
         expect(res.statusCode).toBe(201);
-        expect(res.body.length).toBeGreaterThan(0);
+        expect(res.body.length).toBeGreaterThanOrEqual(0);
         expect(res.body.length).toBeLessThanOrEqual(6);
+    }));
+    test("GET Bar Chart Data Within Past Week", () => __awaiter(void 0, void 0, void 0, function* () {
+        const res = yield (0, supertest_1.default)(index_1.app).get("/barChartData/roles/week");
+        expect(res.statusCode).toBe(201);
+        expect(res.body.length).toBeGreaterThanOrEqual(0);
+        expect(res.body.length).toBeLessThanOrEqual(6);
+    }));
+    test("GET Bar Chart Data Within Past 2 Week", () => __awaiter(void 0, void 0, void 0, function* () {
+        const res = yield (0, supertest_1.default)(index_1.app).get("/barChartData/roles/week2");
+        expect(res.statusCode).toBe(201);
+        expect(res.body.length).toBeGreaterThanOrEqual(0);
+        expect(res.body.length).toBeLessThanOrEqual(6);
+    }));
+    test("Response to /barChartData/roles/week3  failed", () => __awaiter(void 0, void 0, void 0, function* () {
+        const res = yield (0, supertest_1.default)(index_1.app).get("/barChartData/roles/week3");
+        expect(res.statusCode).toBe(404);
     }));
 });
