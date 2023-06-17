@@ -14,3 +14,15 @@ export const MainSectionBase = styled.div`
   padding-top: 54px;
   width: 100%;
 `;
+
+export const MainSectionContent = styled.div`
+  display: flex;
+`;
+
+export const ApplicationContent = styled.div`
+  width: 70%;
+`;
+
+export const ApplicationFilter = styled.div`
+  width: 30%;
+`;

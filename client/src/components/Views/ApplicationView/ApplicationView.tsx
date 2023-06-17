@@ -112,7 +112,11 @@ const ApplicationView: React.FC<Props> = ({
               name="status"
             >
               {applicationStatuses.map((status) => (
-                <option key={status}>{status}</option>
+                <option key={status}>
+                  {status === "final_round"
+                    ? "Final Round"
+                    : status.charAt(0).toUpperCase() + status.slice(1)}
+                </option>
               ))}
             </Select>
           </Label>

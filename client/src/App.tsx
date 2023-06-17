@@ -5,37 +5,26 @@ import MainSection from "./pages/MainPage/MainSection";
 import RecentSection from "./pages/RecentPage/RecentSection";
 import AnalyticsSection from "./pages/AnalyticsPage/AnalyticsSection";
 import AddView from "./components/Views/AddView/AddView";
-import { application } from "./components/model";
-import {
-  getApplicationData,
-  getApplicationDataByModifiedDate,
-} from "./helper/api/functions";
+import { application, applicationStatusFilterType } from "./components/model";
+import { getApplicationData } from "./helper/api/functions";
 
 const App = () => {
   const [applications, setApplications] = useState<application[]>([]);
   const [isInAddView, setIsInAddView] = useState<boolean>(false);
   const [isInAppView, setIsInAppView] = useState<boolean>(false);
   const [isInRecentView, setIsInRecentView] = useState<boolean>(false);
+  const [statusFilter, setStatusFilter] =
+    useState<applicationStatusFilterType>("all");
 
   const fetchApplications = async (dataKind: string = "") => {
-    let applicationData;
-
-    switch (dataKind) {
-      case "recentModified":
-        applicationData = await getApplicationDataByModifiedDate();
-        break;
-      default:
-        applicationData = await getApplicationData();
-        break;
-    }
-
+    const applicationData = await getApplicationData(statusFilter);
     setApplications(applicationData);
   };
 
   useEffect(() => {
     let arg = isInRecentView ? "recentModified" : "";
     fetchApplications(arg);
-  }, [isInAddView, isInAppView, isInRecentView]);
+  }, [isInAddView, isInAppView, isInRecentView, statusFilter]);
 
   return (
     <div className="App">
@@ -54,6 +43,7 @@ const App = () => {
                 isInAddView={isInAddView}
                 setIsInRecentView={setIsInRecentView}
                 isInAppView={isInAppView}
+                setStatusFilter={setStatusFilter}
               />
             }
           >

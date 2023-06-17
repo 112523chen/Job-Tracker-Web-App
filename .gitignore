@@ -3,3 +3,4 @@ server/test.sql
 *.DS_Store
 server/node_modules/@types/express-serve-static-core/package.json
 server/node_modules/.package-lock.json
+*.mongodb

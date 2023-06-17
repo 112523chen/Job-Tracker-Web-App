@@ -22,19 +22,33 @@ const getAllApplications = async (request: Request, response: Response) => {
   }
 };
 
-// Get all applications in database
+// Get all applications sorted by time_status using sort_order filter by an optional application_status
 const getAllApplicationsByFilter = async (
   request: Request,
   response: Response
 ) => {
-  const { method, type } = request.params;
+  const timeStatus = request.params.time_status;
+  const sortOrder = request.params.sort_order;
+  const applicationStatus = request.params.application_status;
 
   try {
-    const result = await pool.query(
-      `SELECT * FROM applications ORDER BY ${method} ${type}`
-    );
+    let result;
+
+    if (applicationStatus !== undefined) {
+      result = await pool.query(
+        `SELECT * FROM applications WHERE status = $1 ORDER BY $2 ${sortOrder}`,
+        [applicationStatus, timeStatus]
+      );
+    } else {
+      result = await pool.query(
+        `SELECT * FROM applications ORDER BY $1 ${sortOrder}`,
+        [timeStatus]
+      );
+    }
     response.status(200).json(result.rows);
   } catch (error) {
+    console.log(request.params);
+    console.log(applicationStatus !== undefined);
     response.status(404).json(error);
   }
 };
@@ -98,25 +112,13 @@ const deleteApplication = async (request: Request, response: Response) => {
   }
 };
 
-// Get data for bar chart
-const getBarChartRoleData = async (request: Request, response: Response) => {
-  try {
-    const results = await pool.query(
-      "SELECT status, COUNT(status) FROM applications WHERE created > CURRENT_DATE - 7 AND status != 'created' GROUP BY status"
-    );
-    response.status(201).json(results.rows);
-  } catch (error) {
-    response.status(404).json(error);
-  }
-};
-
 // Get data for bar chart by window
 const getBarChartRoleDataByWindow = async (
   request: Request,
   response: Response
 ) => {
   const timeFrame: string = getDays(
-    (request.params.frame as TimeFrame) || "week"
+    (request.params.timeFrame as TimeFrame) || "week"
   );
 
   try {
@@ -151,7 +153,6 @@ module.exports = {
   updateApplication,
   createApplication,
   deleteApplication,
-  getBarChartRoleData,
   getBarChartRoleDataByWindow,
   getBarChartTitleData,
 };

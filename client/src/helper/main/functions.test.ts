@@ -57,24 +57,24 @@ describe("getFormValue", () => {
 
 describe("getApplicationColor Tests", () => {
   test("should return grey", () => {
-    expect(getApplicationColor("Created")).toBe("grey");
+    expect(getApplicationColor("created")).toBe("grey");
   });
   test("should return silver", () => {
-    expect(getApplicationColor("Applied")).toBe("silver");
+    expect(getApplicationColor("applied")).toBe("silver");
   });
   test("should return yellow", () => {
-    expect(getApplicationColor("Assessment")).toBe("yellow");
+    expect(getApplicationColor("assessment")).toBe("yellow");
   });
   test("should return orange", () => {
-    expect(getApplicationColor("Interview")).toBe("orange");
+    expect(getApplicationColor("interview")).toBe("orange");
   });
   test("should return blue", () => {
-    expect(getApplicationColor("Final Round")).toBe("blue");
+    expect(getApplicationColor("final_round")).toBe("blue");
   });
   test("should return red", () => {
-    expect(getApplicationColor("Reject")).toBe("red");
+    expect(getApplicationColor("reject")).toBe("red");
   });
   test("should return green", () => {
-    expect(getApplicationColor("Offer")).toBe("green");
+    expect(getApplicationColor("offer")).toBe("green");
   });
 });

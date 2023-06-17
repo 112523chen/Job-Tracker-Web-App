@@ -8,25 +8,25 @@ import { addViewFormData, applicationStatusType } from "../../components/model";
 export const getApplicationColor = (status: applicationStatusType): string => {
   let color: string;
   switch (status) {
-    case "Created":
+    case "created":
       color = "grey";
       break;
-    case "Applied":
+    case "applied":
       color = "silver";
       break;
-    case "Assessment":
+    case "assessment":
       color = "yellow";
       break;
-    case "Interview":
+    case "interview":
       color = "orange";
       break;
-    case "Final Round":
+    case "final_round":
       color = "blue";
       break;
-    case "Reject":
+    case "reject":
       color = "red";
       break;
-    case "Offer":
+    case "offer":
       color = "green";
       break;
   }
