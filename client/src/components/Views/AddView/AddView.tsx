@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { addApplication } from "../../../helper/api/functions";
+import { addApplication, getJobData } from "../../../helper/api/functions";
 import ExitButton from "./FormParts/ExitButton/ExitButton";
 
 import { AddViewBase, Form, FormCenter, H1 } from "./AddView.style";
 import InputsContainer from "./FormParts/InputContainer/InputsContainer";
 import { addViewFormData } from "../../model";
 import { SubmitButton } from "./FormParts/SubmitButton/SubmitButton.style";
+import { scrapedApplicationData } from "../../../helper/models";
 
 interface Props {
   setIsInAddView: React.Dispatch<React.SetStateAction<boolean>>;
@@ -41,10 +42,20 @@ const AddView: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    let scrapedData: scrapedApplicationData = (await getJobData(
+      formData.url
+    )) as scrapedApplicationData;
+
+    console.log(scrapedData);
+    console.log(formData);
+
     let data = {
       ...formData,
-      description: "",
-      status: "Created",
+      title: formData.title || scrapedData.title,
+      company: formData.company || scrapedData.company,
+      description: scrapedData.description,
+      status: "created",
     };
     let response = await addApplication(data);
     if (response == "Passed") {

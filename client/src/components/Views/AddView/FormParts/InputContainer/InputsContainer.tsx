@@ -22,7 +22,7 @@ const InputsContainer: React.FC<Props> = ({
         name={inputName}
         onChange={handleFormChange}
         value={getFormValue(formData, inputName)}
-        required={true}
+        required={getFormValue(formData, inputName) === "url" ? true : false}
       />
       <span className="highlight"></span>
       <span className="bar"></span>

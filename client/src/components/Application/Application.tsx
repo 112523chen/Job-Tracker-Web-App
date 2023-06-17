@@ -69,9 +69,6 @@ const Application: React.FC<Props> = ({
       <ApplicationMain>
         <ApplicationRole>{applicationInfo.title}</ApplicationRole>
         <ApplicationCompany>{applicationInfo.company}</ApplicationCompany>
-        <ApplicationDescription>
-          {/* {applicationInfo.description} */}
-        </ApplicationDescription>
       </ApplicationMain>
       <ApplicationActions>
         {hoverState && !isInAppView && !isInAddView ? (

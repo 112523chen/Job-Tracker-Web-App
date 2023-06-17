@@ -4,7 +4,7 @@ import { DeleteButtonBase } from "./DeleteButton.style";
 
 interface Props {
   id: number;
-  fetchApplications: () => Promise<void>;
+  fetchApplications: (dataKind?: string) => Promise<void>;
 }
 
 const DeleteButton: React.FC<Props> = ({ id, fetchApplications }) => {

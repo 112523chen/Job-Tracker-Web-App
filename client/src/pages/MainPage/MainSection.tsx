@@ -22,7 +22,6 @@ const MainSection: React.FC<Props> = ({
   setIsInAppView,
   fetchApplications,
   isInAppView,
-  // updateCurrentStatusFilter,
 }) => {
   const {
     applicationData,

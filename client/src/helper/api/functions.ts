@@ -5,21 +5,23 @@ import {
   barChartDataType,
   newFormData,
 } from "../../components/model";
-import { TimeFrame } from "../models";
+import { TimeFrame, scrapedApplicationData } from "../models";
 import { applicationStatusFilterType } from "../../components/model";
 
 /**
  * @returns all application data from database
  */
 export const getApplicationData = async (
-  status: applicationStatusFilterType
+  status: applicationStatusFilterType,
+  modifier?: string
 ): Promise<application[]> => {
   let url: string;
+  modifier = modifier ? modifier : "created";
 
   if (status == "all") {
-    url = "http://localhost:3000/applications/sorted/created/DESC";
+    url = `http://localhost:3000/applications/sorted/${modifier}/DESC`;
   } else {
-    url = `http://localhost:3000/applications/sorted/created/DESC/${status}`;
+    url = `http://localhost:3000/applications/sorted/${modifier}/DESC/${status}`;
   }
 
   const response = await fetch(url);
@@ -52,6 +54,24 @@ export const addApplication = async (
     } else {
       return "Failed";
     }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/**
+ *
+ * @param url - a url for a job application
+ * @returns a promise of scraped data from the url
+ */
+export const getJobData = async (
+  url: string
+): Promise<scrapedApplicationData | undefined> => {
+  let input = await encodeURIComponent(url);
+  try {
+    let response = await fetch(`http://localhost:3000/link/${input}`);
+    let data = await response.json();
+    return data;
   } catch (error) {
     console.log(error);
   }

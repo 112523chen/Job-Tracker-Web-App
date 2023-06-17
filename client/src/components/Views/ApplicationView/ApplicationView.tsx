@@ -112,7 +112,7 @@ const ApplicationView: React.FC<Props> = ({
               name="status"
             >
               {applicationStatuses.map((status) => (
-                <option key={status}>
+                <option key={status} value={status}>
                   {status === "final_round"
                     ? "Final Round"
                     : status.charAt(0).toUpperCase() + status.slice(1)}
