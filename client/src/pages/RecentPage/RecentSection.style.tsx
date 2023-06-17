@@ -12,3 +12,7 @@ export const RecentSectionTitle = styled.h1`
   text-align: center;
   width: 70%;
 `;
+
+export const RecentSectionContent = styled.div`
+  display: flex;
+`;

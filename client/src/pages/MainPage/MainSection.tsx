@@ -3,7 +3,14 @@ import { MainPageStates } from "../../components/model";
 import Application from "../../components/Application/Application";
 import { useOutletContext } from "react-router-dom";
 import AddButton from "../../components/Buttons/AddButton/AddButton";
-import { MainSectionBase } from "./MainPage.style";
+import {
+  ApplicationContent,
+  ApplicationFilter,
+  MainSectionBase,
+  MainSectionContent,
+} from "./MainPage.style";
+import ApplicationStatusSelector from "../../components/Selectors/ApplicationStatusSelector/ApplicationStatusSelector";
+import { updateApplication } from "../../helper/api/functions";
 
 interface Props {
   setIsInAppView: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,9 +22,14 @@ const MainSection: React.FC<Props> = ({
   setIsInAppView,
   fetchApplications,
   isInAppView,
+  // updateCurrentStatusFilter,
 }) => {
-  const { applicationData, isInAddView, setIsInAddView } =
-    useOutletContext<MainPageStates>();
+  const {
+    applicationData,
+    isInAddView,
+    setIsInAddView,
+    updateCurrentStatusFilter,
+  } = useOutletContext<MainPageStates>();
 
   return (
     <MainSectionBase>
@@ -26,15 +38,25 @@ const MainSection: React.FC<Props> = ({
         setIsInAddView={setIsInAddView}
         isInAppView={isInAppView}
       />
-      {applicationData.map((app) => (
-        <Application
-          applicationInfo={app}
-          key={app.id}
-          setIsInAppView={setIsInAppView}
-          fetchApplications={fetchApplications}
-          isInAppView={isInAppView}
-        />
-      ))}
+
+      <MainSectionContent>
+        <ApplicationContent>
+          {applicationData.map((app) => (
+            <Application
+              applicationInfo={app}
+              key={app.id}
+              setIsInAppView={setIsInAppView}
+              fetchApplications={fetchApplications}
+              isInAppView={isInAppView}
+            />
+          ))}
+        </ApplicationContent>
+        <ApplicationFilter>
+          <ApplicationStatusSelector
+            updateCurrentStatusFilter={updateCurrentStatusFilter}
+          />
+        </ApplicationFilter>
+      </MainSectionContent>
     </MainSectionBase>
   );
 };
