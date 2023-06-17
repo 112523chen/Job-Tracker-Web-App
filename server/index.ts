@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import { scrapeApplication } from "./scaper/scaper";
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config({ path: "../.env" });
@@ -45,6 +46,9 @@ app.get("/barChartData/roles/:timeFrame?", db.getBarChartRoleDataByWindow);
 
 // Get data for bar chart for top X roles
 app.get("/barChartData/title/:limit?", db.getBarChartTitleData);
+
+// Scrape application data from application url
+app.get("/link/:application_url", scrapeApplication);
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(port, () => console.log(`App running on port ${port}`));
