@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ApplicationBase = styled.div`
   background-color: #e1e1e1;
   background-color: white;
-  width: 70%;
+  width: 100%;
   height: 189px;
   display: flex;
   align-items: space-around;

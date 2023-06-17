@@ -9,6 +9,7 @@ import { barChartDataType } from "../../components/model";
 import BarGraph from "../../components/Graphs/BarGraph/BarGraph";
 import { AnalyticsSectionBase } from "./AnalyticsSection.style";
 import { TimeFrame } from "../../helper/models";
+import TimeFrameSelector from "../../components/Selectors/TimeFrameSelector/TimeFrameSelector";
 
 interface Props {}
 
@@ -25,7 +26,7 @@ const AnalyticsSection: React.FC<Props> = () => {
   };
 
   const fetchBarChartTitleData = async () => {
-    const titleData = await getBarChartTitleData(5);
+    const titleData = await getBarChartTitleData(3);
     setTitleBarChartData(titleData);
   };
 
@@ -42,31 +43,26 @@ const AnalyticsSection: React.FC<Props> = () => {
 
   useEffect(() => {
     fetchBarChartData();
+    fetchBarChartTitleData();
   }, [currentTimeFrame]);
 
   return (
     <AnalyticsSectionBase>
+      <TimeFrameSelector updateCurrentTimeFrame={updateCurrentTimeFrame} />
       <BarGraph
         barChartData={barChartData}
         xAxisValueName={"status"}
         xAxisLabel={"Status"}
         yAxisLabel={"# of Roles"}
-        title={"Distribution of Status"}
+        title={"Distribution of Statuses"}
       />
-      {/* <BarGraph
+      <BarGraph
         barChartData={titleBarChartData}
         xAxisValueName={"title"}
         xAxisLabel={"Titles"}
         yAxisLabel={"Count"}
-        title={"Most Popular Roles Applied to"}
-      /> */}
-      <p>Select Time Frame</p>
-      <select onChange={updateCurrentTimeFrame}>
-        <option value={"week"}>Last Week</option>
-        <option value={"month"}>Last Month</option>
-        <option value={"month3"}>Last 3 Month</option>
-        <option value={"month6"}>Last 6 Month</option>
-      </select>
+        title={"Most Popular Roles Applied To"}
+      />
     </AnalyticsSectionBase>
   );
 };

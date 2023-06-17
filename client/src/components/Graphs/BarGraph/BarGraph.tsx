@@ -19,12 +19,11 @@ const BarGraph: React.FC<Props> = ({
   yAxisLabel,
   title,
 }) => {
-  console.log(barChartData);
   return (
     <BarGraphBase>
       <h3 className="chart-title">{title}</h3>
       <BarChart
-        width={700}
+        width={1000}
         height={300}
         data={barChartData}
         margin={{
