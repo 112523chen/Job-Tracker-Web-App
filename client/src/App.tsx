@@ -6,10 +6,7 @@ import RecentSection from "./pages/RecentPage/RecentSection";
 import AnalyticsSection from "./pages/AnalyticsPage/AnalyticsSection";
 import AddView from "./components/Views/AddView/AddView";
 import { application, applicationStatusFilterType } from "./components/model";
-import {
-  getApplicationData,
-  getApplicationDataByModifiedDate,
-} from "./helper/api/functions";
+import { getApplicationData } from "./helper/api/functions";
 
 const App = () => {
   const [applications, setApplications] = useState<application[]>([]);
@@ -20,17 +17,7 @@ const App = () => {
     useState<applicationStatusFilterType>("all");
 
   const fetchApplications = async (dataKind: string = "") => {
-    let applicationData;
-
-    switch (dataKind) {
-      case "recentModified":
-        applicationData = await getApplicationDataByModifiedDate(statusFilter);
-        break;
-      default:
-        applicationData = await getApplicationData(statusFilter);
-        break;
-    }
-
+    const applicationData = await getApplicationData(statusFilter);
     setApplications(applicationData);
   };
 

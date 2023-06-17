@@ -30,26 +30,6 @@ export const getApplicationData = async (
 
 /**
  *
- * @returns all application data from database sorted by when application was last modified in descending order
- */
-export const getApplicationDataByModifiedDate = async (
-  status: applicationStatusFilterType
-): Promise<application[]> => {
-  let url: string;
-
-  if (status == "all") {
-    url = "http://localhost:3000/applications/sorted/created/DESC";
-  } else {
-    url = `http://localhost:3000/applications/sorted/created/DESC/${status}`;
-  }
-
-  const response = await fetch(url);
-  let applications = (await response.json()) as application[];
-  return applications;
-};
-
-/**
- *
  * @param data - an object that is made up data for a new application
  * @returns a promise of string to indicate if the server has gotten the data
  */
