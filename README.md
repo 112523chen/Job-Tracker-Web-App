@@ -1,4 +1,4 @@
-# Job Application Tracker Web Application
+# Job Tracker Web Application
 
 ## Project Description
 
