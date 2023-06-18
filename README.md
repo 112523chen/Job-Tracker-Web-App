@@ -12,6 +12,9 @@ A full-stack web application created with PERN (Postgres, Express, React, Node) 
 [<code><img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png"></code>](https://reactjs.org/)
 [<code><img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png"></code>](https://nodejs.org/en/)
 
+## Demo
+![alt text](./demo.png)
+
 ## Run locally
 
 1. Start up a postgres server and login into server and keep the username, password, and the port the server is run at
