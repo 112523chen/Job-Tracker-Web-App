@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage/MainPage";
 import MainSection from "./pages/MainPage/MainSection";
 import RecentSection from "./pages/RecentPage/RecentSection";
@@ -21,11 +21,9 @@ const App = () => {
 
     switch (dataKind) {
       case "recentModified":
-        console.log("recentModified");
         applicationData = await getApplicationData(statusFilter, "modified");
         break;
       default:
-        console.log("default");
         applicationData = await getApplicationData(statusFilter, "created");
         break;
     }
