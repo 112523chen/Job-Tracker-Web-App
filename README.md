@@ -14,50 +14,31 @@ A full-stack web application created with PERN (Postgres, Express, React, Node) 
 
 ## Run locally
 
-1. Start up a postgres server and login into server and keep the username, password, and the port the server is run at
+0. Install Docker Desktop and or CLI
 
-2. Run the following command in postgres server
+   [Docker.com](https://www.docker.com/)
 
-```sql
-CREATE DATABASE jobapp;
-CREATE TABLE applications (
-    id SERIAL primary key,
-    title varchar,
-    company varchar,
-    created timestamptz,
-    modified timestamptz,
-    status varchar,
-    url varchar,
-    description varchar
-);
-```
+1. Clone this repository to your local machine
 
-3. Clone this repository to your local machine
+   ```bash
+   git clone https://github.com/112523chen/Job-Application-Tracker-Web-App.git
+   ```
 
-```bash
-git clone https://github.com/112523chen/Job-Application-Tracker-Web-App.git
-```
+2. Open the Root of the Clone within Terminal
 
-4. Open up the created director in a terminal and go into the `server` directory, add a `.env` file with the following code, add update the code with your information
+3. Run the following command in Terminal
 
-```bash
-PORT=<Port where api will reference>
-USER=<Your username for server>
-HOST="localhost"
-DB="jobapp"
-DBPORT=<Port where your server is at>
-```
+4. Start up a postgres server and login into server and keep the username, password, and the port the server is run at
 
-5. Run the following command to set up backend and run it
+5. Run the following command in postgres server
 
-```bash
-npm install && npm run start
-```
+   ```bash
+   docker build -t client ./client && docker compose up -d && docker run -rm -p 5173:5173 -d client
+   ```
 
-6. Open up the `client` director in a different terminal and run the following command
+6. Open the Following Link in Browser
+   [http://localhost:5173/](http://localhost:5173/)
 
-```bash
-npm install && npm run start
-```
+## Troubleshooting
 
-7. Click the link that pops up to access the web application
+> If port any of the ports (5173, 5432, 3001) please go through the project and change the ports to unused ports
