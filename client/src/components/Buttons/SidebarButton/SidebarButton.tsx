@@ -26,7 +26,7 @@ const SidebarButton: React.FC<Props> = ({
   return (
     <StyledLink
       to={path}
-      isNotAvailable={isNotAvailable(isInAddView, isInAppView)}
+      isnotavailable={isNotAvailable(isInAddView, isInAppView)}
     >
       <SidebarButtonBase>
         <SidebarButtonIcon>{icon}</SidebarButtonIcon>

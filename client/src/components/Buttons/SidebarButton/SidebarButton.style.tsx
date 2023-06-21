@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 interface SidebarButtonProps {
-  isNotAvailable: boolean;
+  isnotavailable: boolean;
 }
 
 export const StyledLink = styled(NavLink)<SidebarButtonProps>`
@@ -10,10 +10,10 @@ export const StyledLink = styled(NavLink)<SidebarButtonProps>`
   text-decoration: none;
 
   &:hover {
-    cursor: ${({ isNotAvailable }) => (isNotAvailable ? "default" : "pointer")};
-    background-color: ${(isNotAvailable) =>
-      isNotAvailable ? "" : "rgba(0, 0, 0, 0.06)"};
-    color: ${(isNotAvailable) => (isNotAvailable ? "" : "white")};
+    cursor: ${(props) => (props.isnotavailable ? "default" : "pointer")};
+    background-color: ${(props) =>
+      props.isnotavailable ? "" : "rgba(0, 0, 0, 0.06)"};
+    color: ${(props) => (props.isnotavailable ? "" : "white")};
   }
 
   &.active {
