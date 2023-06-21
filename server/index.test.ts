@@ -39,7 +39,7 @@ describe("Application CRUD", () => {
       expect(res.statusCode).toBe(200);
       expect(res.body.length).toBeGreaterThan(-1);
       expect(
-        new Date(res.body[0].modified) > new Date(res.body[1].modified)
+        new Date(res.body[0].modified) < new Date(res.body[1].modified)
       ).toEqual(true);
     });
 
