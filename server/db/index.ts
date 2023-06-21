@@ -7,6 +7,7 @@ const pool = new Pool({
   user: process.env.USER,
   host: process.env.HOST,
   database: process.env.DB,
+  password: process.env.PASSWORD,
   port: Number(process.env.DBPORT),
 });
 
@@ -47,8 +48,6 @@ const getAllApplicationsByFilter = async (
     }
     response.status(200).json(result.rows);
   } catch (error) {
-    console.log(request.params);
-    console.log(applicationStatus !== undefined);
     response.status(404).json(error);
   }
 };
@@ -70,7 +69,6 @@ const getApplicationByID = async (request: Request, response: Response) => {
 // Post a new application into database
 const createApplication = async (request: Request, response: Response) => {
   const { title, company, status, url, description } = request.body;
-  console.log(company);
   try {
     const result = await pool.query(
       "INSERT INTO applications (title, company, created, modified, status, url, description) values ($1, $2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, $3, $4, $5) RETURNING *",
