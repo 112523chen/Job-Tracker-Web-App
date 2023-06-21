@@ -1,4 +1,4 @@
-# Job Application Tracker Web Application
+# Job Tracker Web Application
 
 ## Project Description
 
@@ -11,6 +11,9 @@ A full-stack web application created with PERN (Postgres, Express, React, Node) 
 [<code><img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/express/express.png"></code>](https://expressjs.com/)
 [<code><img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png"></code>](https://reactjs.org/)
 [<code><img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png"></code>](https://nodejs.org/en/)
+
+## Demo
+![alt text](./demo.png)
 
 ## Run locally
 
