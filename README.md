@@ -31,15 +31,11 @@ A full-stack web application created with PERN (Postgres, Express, React, Node) 
 
 3. Run the following command in Terminal
 
-4. Start up a postgres server and login into server and keep the username, password, and the port the server is run at
-
-5. Run the following command in postgres server
-
    ```bash
    docker build -t client ./client && docker compose up -d && docker run -rm -p 5173:5173 -d client
    ```
 
-6. Open the Following Link in Browser
+4. Open the Following Link in Browser
    [http://localhost:5173/](http://localhost:5173/)
 
 ## Troubleshooting
