@@ -1,12 +1,14 @@
 import axios from "axios";
 import {
   application,
-  applicationStatusType,
   barChartDataType,
   newFormData,
 } from "../../components/model";
 import { TimeFrame, scrapedApplicationData } from "../models";
 import { applicationStatusFilterType } from "../../components/model";
+
+const host: string = "localhost";
+const port: number = 3001;
 
 /**
  * @returns all application data from database
@@ -19,9 +21,9 @@ export const getApplicationData = async (
   modifier = modifier ? modifier : "created";
 
   if (status == "all") {
-    url = `http://localhost:3000/applications/sorted/${modifier}/DESC`;
+    url = `http://${host}:${port}/applications/sorted/${modifier}/DESC`;
   } else {
-    url = `http://localhost:3000/applications/sorted/${modifier}/DESC/${status}`;
+    url = `http://${host}:${port}/applications/sorted/${modifier}/DESC/${status}`;
   }
 
   const response = await fetch(url);
@@ -47,7 +49,7 @@ export const addApplication = async (
   };
 
   try {
-    let response = await fetch("http://localhost:3000/applications", method);
+    let response = await fetch(`http://${host}:${port}/applications`, method);
 
     if (response.status === 201) {
       return "Passed";
@@ -69,7 +71,7 @@ export const getJobData = async (
 ): Promise<scrapedApplicationData | undefined> => {
   let input = await encodeURIComponent(url);
   try {
-    let response = await fetch(`http://localhost:3000/link/${input}`);
+    let response = await fetch(`http://${host}:${port}/link/${input}`);
     let data = await response.json();
     return data;
   } catch (error) {
@@ -91,7 +93,7 @@ export const removeApplication = async (
 
   try {
     let response = await fetch(
-      `http://localhost:3000/applications/${id}`,
+      `http://${host}:${port}/applications/${id}`,
       method
     );
 
@@ -124,7 +126,7 @@ export const updateApplication = async (
   };
 
   let response = await fetch(
-    `http://localhost:3000/applications/${id}`,
+    `http://${host}:${port}/applications/${id}`,
     method
   );
   if (response.status === 201) {
@@ -139,7 +141,7 @@ export const updateApplication = async (
  * @returns a promise for the data from database to fill in a bar chart
  */
 export const getBarChartData = async (): Promise<barChartDataType[]> => {
-  const response = await axios.get("http://localhost:3000/barChartData/roles");
+  const response = await axios.get(`http://${host}:${port}/barChartData/roles`);
   return response.data;
 };
 
@@ -150,7 +152,7 @@ export const getBarChartDataByTimeFrame = async (
   frame: TimeFrame
 ): Promise<barChartDataType[]> => {
   const response = await axios.get(
-    `http://localhost:3000/barChartData/roles/${frame}`
+    `http://${host}:${port}/barChartData/roles/${frame}`
   );
   return response.data;
 };
@@ -160,7 +162,7 @@ export const getBarChartDataByTimeFrame = async (
  */
 export const getBarChartTitleData = async (limit: number) => {
   const response = await axios.get(
-    `http://localhost:3000/barChartData/title/${limit}`
+    `http://${host}:${port}/barChartData/title/${limit}`
   );
   return response.data;
 };

@@ -47,9 +47,6 @@ const AddView: React.FC<Props> = ({ setIsInAddView, isInAddView }) => {
       formData.url
     )) as scrapedApplicationData;
 
-    console.log(scrapedData);
-    console.log(formData);
-
     let data = {
       ...formData,
       title: formData.title || scrapedData.title,
