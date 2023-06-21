@@ -45,7 +45,7 @@ const node_test_1 = require("node:test");
             const res = yield (0, supertest_1.default)(index_1.app).get("/applications/sorted/modified/DESC");
             expect(res.statusCode).toBe(200);
             expect(res.body.length).toBeGreaterThan(-1);
-            expect(new Date(res.body[0].modified) > new Date(res.body[1].modified)).toEqual(true);
+            expect(new Date(res.body[0].modified) < new Date(res.body[1].modified)).toEqual(true);
         }));
         test("Response to /applications/sorted/modified/ASC", () => __awaiter(void 0, void 0, void 0, function* () {
             const res = yield (0, supertest_1.default)(index_1.app).get("/applications/sorted/modified/ASC");

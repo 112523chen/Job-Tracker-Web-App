@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.app = void 0;
 const express_1 = __importDefault(require("express"));
+const scaper_1 = require("./scaper/scaper");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config({ path: "../.env" });
@@ -21,8 +22,8 @@ exports.app.get("/", (request, response) => {
 });
 // Get all applications in database
 exports.app.get("/applications", db.getAllApplications);
-// Get all applications in database by
-exports.app.get("/applications/sorted/:method/:type", db.getAllApplicationsByFilter);
+// Get all applications sorted by time_status using sort_order filter by application_status
+exports.app.get("/applications/sorted/:time_status/:sort_order/:application_status?", db.getAllApplicationsByFilter);
 // Get application by application id
 exports.app.get("/applications/:id", db.getApplicationByID);
 // Post a new application into database
@@ -31,8 +32,12 @@ exports.app.post("/applications/", db.createApplication);
 exports.app.put("/applications/:id", db.updateApplication);
 // Delete an existing application by application id
 exports.app.delete("/applications/:id", db.deleteApplication);
-// Get data for bar chart
-exports.app.get("/barChartData", db.getBarChartData);
+// Get data for count bar chart by time frame
+exports.app.get("/barChartData/roles/:timeFrame?", db.getBarChartRoleDataByWindow);
+// Get data for bar chart for top X roles
+exports.app.get("/barChartData/title/:limit?", db.getBarChartTitleData);
+// Scrape application data from application url
+exports.app.get("/link/:application_url", scaper_1.scrapeApplication);
 if (process.env.NODE_ENV !== "test") {
     exports.app.listen(port, () => console.log(`App running on port ${port}`));
 }
