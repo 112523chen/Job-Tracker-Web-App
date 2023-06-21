@@ -27,15 +27,14 @@ A full-stack web application created with PERN (Postgres, Express, React, Node) 
    git clone https://github.com/112523chen/Job-Application-Tracker-Web-App.git
    ```
 
-2. Open the Root of the Clone within Terminal
-
-3. Run the following command in Terminal
+2. Open the Root of the Clone within Terminal Run the Following Command in Terminal
 
    ```bash
    docker build -t client ./client && docker compose up -d && docker run -rm -p 5173:5173 -d client
    ```
 
-4. Open the Following Link in Browser
+3. Open the Following Link in Browser
+   
    [http://localhost:5173/](http://localhost:5173/)
 
 ## Troubleshooting
